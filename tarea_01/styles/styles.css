@@ -1,0 +1,53 @@
+html,
+body {
+  width: 98%;
+  height: 98%;
+  margin: 0.4%;
+  padding: 0.5%;
+  padding-top: 0%;
+  padding-bottom: 0%;
+  display: flex;
+  flex-direction: column;
+  background-color: red;
+  color: white;
+}
+
+#cabecera {
+  display: flex;
+  height: 50%;
+}
+
+#logo {
+  margin-top: 0.5%;
+  float: left;
+  width: 10%;
+}
+
+#ejercicio {
+  width: 50%;
+  font-size: 1.6em;
+  text-align: center;
+  padding: 0% 0% 0% 10%;
+}
+
+#datos {
+  text-align: right;
+  font-size: 1em;
+  float: right;
+  width: 40%;
+}
+
+#caja_respuesta {
+  height: 100%;
+  width: 100%;
+  background-color: white;
+}
+
+.enunciado {
+  color: black;
+  margin: 10px;
+}
+
+#listado_ejercicios{
+    padding: 1%;
+}
