@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DWEC Actividad 01</title>
+    <title>DWEC Tarea 01</title>
     <link rel="shortcut icon" href="./assets/icons/logo_florida.png">
     <link rel="stylesheet" type="text/css" href="./styles/styles.css" media="screen">
 </head>
@@ -15,28 +15,194 @@
             <div id="logo">
                 <img src="./assets/image/logo.png" alt="Logo Florida Universitaria">
             </div>
-
-            <div id="ejercicio">
+            <div id="titulo_ejercicio">
                 <h1>Tarea 01</h1>
             </div>
-
-            <div id ="datos">
+            <div id="datos_personales">
                 <h3>José Manuel Domínguez Hernández</h3>
                 <h3>2º DAW Semipresencial Curso 2023/24</h3>
             </div>
-
         </div>
     </header>
 
     <section id="caja_respuesta">
-        <div id="listado_ejercicios" >
-            <li >
-                <button>
-                    <a href="./html/ejercicio_01.html" target="_blank">Ejercicio 01</a>
-                </button>
-            </li>
+
+        <div id="bloque_01">
+            <div class="caja_ejercicio">
+                <div class="ejercicio">
+                    <h4 class="titulo_enunciado">Ejercicio 01</h4>
+                    <h5 class="enunciado">
+                        &nbsp&nbsp&nbsp&nbspImplementa en un script la función o funciones
+                        que necesites para que mediante el uso de prompt() se le
+                        pregunte al usuario cuántos años tiene y tras capturar su
+                        respuesta, se muestre por pantalla una alerta que indique el
+                        año en que nació. Si el usuario introduce por error letras en
+                        lugar de números, volverá a preguntar al usuario cuántos años
+                        tiene hasta que éste introduzca un número. Para realizar este
+                        script deberás utilizar la sentencia condicional ‘if’.
+                    </h5>
+                        <button class="boton_ejercicio" onclick="question()">Ejecutar</button>
+                </div>
+            </div>
+
+            <div class="caja_ejercicio">
+                <div class="ejercicio">
+                    <h4 class="titulo_enunciado">Ejercicio 02</h4>
+                    <h5 class="enunciado">
+                        &nbsp&nbsp&nbsp&nbspImplementa el script anterior utilizando esta vez
+                        un bucle do while.
+                    </h5>
+                    <button class="boton_ejercicio"
+                        onclick="window.location.href='./html/ejercicio_02.html';">Solución</button>
+                </div>
+            </div>
+
+            <div class="caja_ejercicio">
+                <div class="ejercicio">
+                    <h4 class="titulo_enunciado">Ejercicio 03</h4>
+                    <h5 class="enunciado">
+                        &nbsp&nbsp&nbsp&nbspImplementa en un script la función o funciones
+                        que necesites para que mediante el uso de prompt() se le
+                        pregunte al usuario que nota numérica ha obtenido a final de
+                        curso y le devuelva la calificación “en letra”: insuficiente
+                        (menos de 5 puntos), suficiente (entre 5 y 6 puntos), bien
+                        (entre 6 y 7 puntos), notable (entre 7 y 8 puntos), notable alto
+                        (entre 8 y 9 puntos) y sobresaliente (más de 9 puntos). Para
+                        realizar este script deberás utilizar la sentencia condicional ‘if’.
+
+                    </h5>
+                    <!-- <button class="boton_ejercicio"
+                        onclick="window.location.href='./html/ejercicio_03.html';">Solución</button>-->
+                        <button class="boton_ejercicio" onclick="question()">Ejecutar</button>
+                </div>
+            </div>
+
+            <div class="caja_ejercicio">
+                <div class="ejercicio">
+                    <h4 class="titulo_enunciado">Ejercicio 04</h4>
+                    <h5 class="enunciado">
+                        &nbsp&nbsp&nbsp&nbspImplementa el script anterior utilizando esta vez
+                        la sentencia condicional ‘switch’.
+                    </h5>
+                    <button class="boton_ejercicio"
+                        onclick="window.location.href='./html/ejercicio_04.html';">Solución</button>
+                </div>
+            </div>
+
+            <div class="caja_ejercicio">
+                <div class="ejercicio">
+                    <h4 class="titulo_enunciado">Ejercicio 05</h4>
+                    <h5 class="enunciado">
+                        &nbsp&nbsp&nbsp&nbspImplementa en un script la función o funciones
+                        que necesites para que mediante el uso de prompt() se le pida
+                        al usuario que introduzca los dos lados de un paralelogramo -
+                        figura geométrica de cuatro lados- y responda por consola -
+                        utilizando console.log- con el área y perímetro del
+                        paralelogramo calculados a partir de los datos introducidos por
+                        el usuario. Además, deberá informar de qué tipo de
+                        paralelogramo se trata: cuadrado -los cuatro lados iguales- o
+                        rectangular –lados iguales dos a dos-. Nota: en el caso de que
+                        el usuario no introduzca números para alguno de los lados, el
+                        script volverá a pedirle que introduzca un número.
+                    </h5>
+                    <button class="boton_ejercicio"
+                        onclick="window.location.href='./html/ejercicio_05.html';">Solución</button>
+                </div>
+            </div>
         </div>
+
+        <div id="bloque_02">
+            <div class="caja_ejercicio">
+                <div class="ejercicio">
+                    <h4 class="titulo_enunciado">Ejercicio 06</h4>
+                    <h5 class="enunciado">
+                        &nbsp&nbsp&nbsp&nbspImplementa en un script la función o funciones
+                        que necesites para que mediante prompt() se le pida al
+                        usuario que introduzca un número y a continuación muestre
+                        por pantalla el resultado del factorial de ese número. Se
+                        deberá utilizar el bucle ‘for’. Nota: factorial del número 5 =
+                        5*4*3*2*1. Factorial del número 7 = 7*6*5*4*3*2*1.
+                    </h5>
+                    <button class="boton_ejercicio"
+                        onclick="window.location.href='./html/ejercicio_06.html';">Solución</button>
+                </div>
+            </div>
+
+            <div class="caja_ejercicio">
+                <div class="ejercicio">
+                    <h4 class="titulo_enunciado">Ejercicio 07</h4>
+                    <h5 class="enunciado">
+                        &nbsp&nbsp&nbsp&nbspImplementa en un script la función o funciones
+                        que necesites para que mediante prompt() se le pida al
+                        usuario introduzca una palabra o frase y le responda por
+                        pantalla si esa palabra es un palíndromo. No se podrá utilizar
+                        la función reverse(). Nota: Palíndromo: palabra o frase que se
+                        lee igual de atrás hacia adelante. Ejemplos: ‘Ana’. ‘Otto’.
+                        ‘Dábale arroz a la zorra el abad’.
+                    </h5>
+                    <button class="boton_ejercicio"
+                        onclick="window.location.href='./html/ejercicio_07.html';">Solución</button>
+                </div>
+            </div>
+
+            <div class="caja_ejercicio">
+                <div class="ejercicio">
+                    <h4 class="titulo_enunciado">Ejercicio 08</h4>
+                    <h5 class="enunciado">
+                        &nbsp&nbsp&nbsp&nbsp Realizar un script para obtener el número de la
+                        serie de Fibonacci que el usuario introduzca. Nota: Serie de
+                        Fibonacci: 1, 1, 2, 3, 5, 8, 13... Cada número de la serie es la
+                        suma de los dos anteriores. Si usuario introduce el 3, el script
+                        devuelve un 2. Si introduce un 7, devuelve un 13.
+                    </h5>
+                    <button class="boton_ejercicio"
+                        onclick="window.location.href='./html/ejercicio_08.html';">Solución</button>
+                </div>
+            </div>
+
+            <div class="caja_ejercicio">
+                <div class="ejercicio">
+                    <h4 class="titulo_enunciado">Ejercicio 09</h4>
+                    <h5 class="enunciado">
+                        &nbsp&nbsp&nbsp&nbspRealizar un script que calcule y muestre por
+                        consola una combinación al azar de la lotería Euromillones: 5
+                        primeros números al azar elegidos del 1 al 50 y dos últimos
+                        del 1 al 12. Nota: no puede haber números repetidos. Utilizar
+                        Math.random.
+                    </h5>
+                    <button class="boton_ejercicio"
+                        onclick="window.location.href='./html/ejercicio_09.html';">Solución</button>
+                </div>
+            </div>
+
+            <div class="caja_ejercicio">
+                <div class="ejercicio">
+                    <h4 class="titulo_enunciado">Ejercicio 10</h4>
+                    <h5 class="enunciado">
+                        &nbsp&nbsp&nbsp&nbspImplementa en un script una función que
+                        reciba como parámetros de entrada el mes del año, el número
+                        de días que tiene ese mes y el día de la semana en que
+                        empieza y devuelva por consola la distribución de los días en
+                        formato de calendario de ese mes. Para ello utilizarás arrays
+                        de dos dimensiones y console.table(…) para mostrar los
+                        resultados por consola. Ejemplo: si el usuario introduce enero,
+                        31 y domingo, el script deberá devolver por pantalla lo
+                        siguiente:
+                    </h5>
+                    <div id="tabla">
+                        <a title="tabla" href="./assets/image/calendario.jpeg">
+                            <img id="imagen_tabla" src="./assets/image/calendario.jpeg" alt="tabla" />
+                        </a>
+                    </div>
+                    <button class="boton_ejercicio"
+                        onclick="window.location.href='./html/ejercicio_10.html';">Solución</button>
+                </div>
+            </div>
+        </div>
+
     </section>
     <script src="./src/main.js"></script>
+    <script src="./src/ejercicio_01.js"></script>
 </body>
+
 </html>
