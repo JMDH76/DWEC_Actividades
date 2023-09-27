@@ -1,3 +1,9 @@
+/* Ejercicio 07. Implementa en un script la función o funciones que necesites para que 
+mediante prompt() se le pida al usuario introduzca una palabra o frase y le responda por 
+pantalla si esa palabra es un palíndromo. No se podrá utilizar la función reverse(). 
+Nota: Palíndromo: palabra o frase que se lee igual de atrás hacia adelante. 
+Ejemplos: ‘Ana’. ‘Otto’. ‘Dábale arroz a la zorra el abad’. */
+
 function question7() {
     let original = prompt("Indique una palabra o frase");
     isPalindrome(original);

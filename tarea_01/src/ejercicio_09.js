@@ -4,14 +4,15 @@
 
 function euromillones() {
 
-    
     let numbers = getNumbers(1, 50, 5);
     let stars = getNumbers(1, 12, 2);
+    console.log(numbers + "\nEstrellas:  " + stars);
     alert(numbers + "\nEstrellas:  " + stars);
 }
 
 
 function getNumbers(min, max, iter) {
+
     let combination = [];
     let number;
     for (let i = 0; i < iter; i++) {
@@ -19,12 +20,10 @@ function getNumbers(min, max, iter) {
         if (combination.includes(number) === false) combination.push(number);
         else i = i - 1;
     }
-   
-    combination = combination.sort(comparar);
-    console.log(combination);
-    combination = combination.join(" - ");
+    combination = combination.sort(comparar).join(" - ");
     return combination;
 }
+
 
 function comparar(a, b) {
     return a - b;

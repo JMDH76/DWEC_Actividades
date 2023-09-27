@@ -1,3 +1,5 @@
+/* Ejercicio 04. Implementa el script anterior utilizando esta vez la sentencia condicional ‘switch’. */
+
 function question4() {
     let note;
     do {
@@ -8,6 +10,7 @@ function question4() {
     } while (isNaN(note) || note > 10 || note < 0)
     calculateNote2(parseInt(note));
 }
+
 
 function calculateNote2(resp) {
     let letterNote;

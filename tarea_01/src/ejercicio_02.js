@@ -1,3 +1,5 @@
+/* Ejercicio 02. Implementa el script anterior utilizando esta vez un bucle do while. */
+
 function question2() {
     let year = new Date().getFullYear();
     let age;

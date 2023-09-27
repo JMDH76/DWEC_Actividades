@@ -7,14 +7,15 @@ function question8() {
     fibonacciSeries(position);
 }
 
+
 function fibonacciSeries(num) {
-    
+
     let fibonacciArray = [1, 1];
     for (let i = 0; i < num; i++) {
         fibonacciNumber = fibonacciArray[i] + fibonacciArray[i + 1];
         fibonacciArray.push(fibonacciNumber);
     }
-    let number = fibonacciArray[num-1];
+    let number = fibonacciArray[num - 1];
 
     alert("El número de la serie de Fibonacci correspondiente a la posición " + num + " es el " + number);
 }
