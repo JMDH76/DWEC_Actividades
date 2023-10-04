@@ -1,34 +1,33 @@
-/* En  el  archivo  almuerzos.html  proporcionado, 
-implementa  un  script  para  que  cuando  el  usuario  pase  el 
-cursor por  encima de cualquiera de las imágenes de la tabla, 
-ésta cambie su opacidad a la mitad. Si hace click sobre dicha 
-imagen, saltará una pantalla modal con el nombre del 
-bocadillo  y  un  enlace  que  llevará  a  una  URL  con  información 
-sobre  él  mismo.  Los  nombres  de  los  bocadillos  son:  Chivito, 
-Blanco  y  negro,  Brascada,  Almussafes,  Tortilla  de  patatas, 
-Calamares en alioli.  
- 
-NOTA:  se  proporciona  un  ejemplo  de  cómo  implementar  una 
-pantalla  modal  en  JavaScript  en  la  carpeta  adjunta  ‘Ejemplo 
-Pantalla Modal’. */
+/* En  el  archivo  almuerzos.html  proporcionado, implementa  un  script  para  que  cuando  el  usuario 
+ pase  el cursor por  encima de cualquiera de las imágenes de la tabla, ésta cambie su opacidad a la 
+ mitad. Si hace click sobre dicha imagen, saltará una pantalla modal con el nombre del bocadillo  y  un  
+ enlace  que  llevará  a  una  URL  con  información sobre  él  mismo.  Los  nombres  de  los  bocadillos 
+son:  Chivito, Blanco  y  negro,  Brascada,  Almussafes,  Tortilla  de  patatas, Calamares en alioli.  
 
-let list = [
-    "Chivito",
-    "Blanco y negro",
-    "Brascada",
-    "Almussafes",
-    "Tortilla de patatas",
-    "Calamares en alioli"
+NOTA:  se  proporciona  un  ejemplo  de  cómo  implementar  una pantalla  modal  en  JavaScript  en  la  
+carpeta  adjunta  ‘Ejemplo Pantalla Modal’. */
+
+
+let lunchList = [
+    [
+        "Chivito",
+        "Blanco y negro",
+        "Brascada",
+        "Almussafes",
+        "Tortilla de patatas",
+        "Calamares con alioli"
+    ],
+    [
+        "https://es.wikipedia.org/wiki/Chivito",
+        "https://es.wikipedia.org/wiki/Blanco_y_negro_(bocadillo)",
+        "https://www.gastronomia.es/recetas/bocadillo-brascada/",
+        "https://www.gastronomia.es/recetas/bocadillo-almussafes/",
+        "https://es.wikipedia.org/wiki/Bocadillo_de_tortilla_de_patatas",
+        "https://es.wikipedia.org/wiki/Bocadillo_de_calamares"
+    ]
 ];
 
-let links = [
-    "https://es.wikipedia.org/wiki/Chivito",
-    "https://es.wikipedia.org/wiki/Blanco_y_negro_(bocadillo)",
-    "https://www.gastronomia.es/recetas/bocadillo-brascada/",
-    "https://www.gastronomia.es/recetas/bocadillo-almussafes/",
-    "https://es.wikipedia.org/wiki/Bocadillo_de_tortilla_de_patatas",
-    "https://es.wikipedia.org/wiki/Bocadillo_de_calamares"
-];
+
 
 let imagTable = document.getElementsByTagName("table")[0];
 let tableSize = document.getElementsByTagName("table")[0].rows.length;
@@ -51,8 +50,8 @@ for (let i = 0; i < tableSize; i++) {
 
     cells[i].addEventListener("click", () => {
         modal.classList.toggle('show-modal');
-        modalH1.textContent = list[i];
-        modalH1.insertAdjacentHTML('afterend', "<a id='newLink' href=" + links[i] + " target='blank'>Ver</a>");
+        modalH1.textContent = lunchList[0][i];
+        modalH1.insertAdjacentHTML('afterend', "<a id='newLink' style='color:blue' href=" + lunchList[1][i] + " target='blank'>Ver</a>");
     });
 }
 
