@@ -14,6 +14,6 @@ parrafo03.style.fontWeight = 'bold';
 parrafo03.style.fontSize = "40px";
 
 let parrafo04 = document.getElementsByTagName("p")[3];
-parrafo04.style.color = "import { connect } from 'react-redux'";
+parrafo04.style.color = "red";
 parrafo04.style.fontWeight = 'bold';
 parrafo04.style.fontSize = "50px";
