@@ -26,6 +26,4 @@ dessertImage.addEventListener('mouseup', () => {
     textH2.textContent = returnText;
     textH2.style.color = '';
     document.getElementsByTagName('p')[0].style.visibility = 'visible';
-    
-
 }) 
