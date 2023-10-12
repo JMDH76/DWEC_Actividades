@@ -1,0 +1,84 @@
+/* Universal Styles */
+
+body {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Navigation */
+
+nav {
+  text-align: center;
+}
+
+nav img {
+  display: block;
+  width: 180px;
+  margin: 0 auto;
+}
+
+nav span {
+  display: block;
+  font-size: 16px;
+  font-weight: 100;
+  letter-spacing: 2px;
+  margin: 10px 0px;
+}
+
+nav a {
+  color: #666666;
+}
+
+/* Header */
+
+.header {
+  background-position: center;
+  background-size: cover;
+  height: 100px;
+}
+
+.header h1 {
+  background-color: #05A8AA;
+  color: #FFF;
+  font-family: 'Oswald', sans-serif;
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 40px;
+  width: 68%;
+  padding: 20px;
+  margin: 0px auto;
+}
+
+/* Form */
+
+input:focus {
+  color: black;
+}
+
+::placeholder {
+  color: white;
+  opacity: 1;
+}
+
+::-ms-input-placeholder {
+  color: white;
+}
+
+.input {
+  background: #05A8AA;
+  width: 15%;
+  font-size: 20px;
+  margin-top: 5px;
+}
+
+.send {
+  background: white;
+  width: 5%;
+  font-size: 20px;
+  margin-top: 5px;
+}
