@@ -10,32 +10,25 @@ let titlesArray = ['Nombre', 'Primer apellido', 'Segundo apellido', 'dni'];
 
 form.addEventListener('submit', function (event) {
     event.preventDefault();
-    let textOk = testText();
     let dniLetter = testDni();
-    if (textOk === true && isNaN(dniLetter)) {
+    if (testText() === true && dniLetter !== false) {
         alert('La letra de su dni es ' + dniLetter);
         form.reset();
-    } else alert("error");
+    }
 });
 
-
 function testText() {
-    let test = [];
+    let resp = true;
     for (let i = 0; i < 3; i++) {
         let text = document.getElementsByTagName('input')[i].value;
-        if (isNaN(text)) {
-            test.push('ok');
-        } else {
+        if (!isNaN(text) || text === "" || text === undefined) {
             alert('Inserte un ' + titlesArray[i] + ' valido');
             document.getElementsByTagName('input')[i].value = '';
+            resp = false;
+            break;
         }
     }
-
-    for (let i = 0; i < test.length; i++){
-        if (test[i] !== 'ok') {
-            return false
-        } else  return true;
-    }
+    return resp;
 }
 
 function testDni() {
@@ -43,11 +36,12 @@ function testDni() {
     let dniLength = dni.toString().length;
     let letters = 'TRWAGMYFPDXBNJZSQVHLCKE';
 
-    if (!isNaN(dni) && dniLength === 8) {
-        let dniLetter = letters[dni % 23]
+    if (!isNaN(dni) && dniLength === 8 && dni !== '' && dni !== undefined) {
+        let dniLetter = letters[dni % 23];
         return dniLetter;
     } else {
-        alert('Inserte un número de DNI valido');
         document.getElementById('dni').value = '';
+        alert('Inserte un número de DNI valido');
+        return false
     }
 }
