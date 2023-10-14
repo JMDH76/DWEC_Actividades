@@ -60,7 +60,7 @@ function onSubmit(event){
 
 function validateString(category, value){
     let string = document.getElementsByName(category)[0].value;
-    let regExp = "^([A-Za-z ÑñÁáÉéÍíÓóÚú]+['\-]{0,1}[A-Za-zÑñÁáÉéÍíÓóÚú]+)(\s+([A-Za-zÑñÁáÉéÍíÓóÚú]+['\-]{0,1}[A-Za-zÑñÁáÉéÍíÓóÚú]+))*$";
+    let regExp = "^([A-Za-z ÑñÁáÉéÍíÓóÚú]+['\-]{0,1}[A-Za-z ÑñÁáÉéÍíÓóÚú]+)(\s+([A-Za-z ÑñÁáÉéÍíÓóÚú]+['\-]{0,1}[A-Za-z ÑñÁáÉéÍíÓóÚú]+))*$";
     if(string.match(regExp) === null){
         alert(`Por favor, introduce un ${value} correcto`);
         return false;
