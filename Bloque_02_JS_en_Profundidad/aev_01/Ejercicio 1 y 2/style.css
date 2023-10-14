@@ -1,0 +1,346 @@
+/* Universal Styles */
+
+body {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Navigation */
+
+nav {
+  text-align: center;
+}
+
+nav img {
+  display: block;
+  width: 180px;
+  margin: 0 auto;
+}
+
+nav span {
+  display: block;
+  font-size: 16px;
+  font-weight: 100;
+  letter-spacing: 2px;
+  margin: 10px 0px;
+}
+
+nav a {
+  color: #666666;
+}
+
+/* Content Container */
+
+.content {
+  width: 100%;
+  margin: 10px auto;
+}
+
+/* Content Header */
+
+.header {
+  background-position: center;
+  background-size: cover;
+  height: 100px;
+}
+
+.header h1 {
+  background-color: black;
+  color: #FFF;
+  font-family: 'Oswald', sans-serif;
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 40px;
+  width: 68%;
+  padding: 20px;
+  margin: 0px auto;
+}
+
+/* Content Body */
+
+.content .body {
+  width: 90%;
+  margin: 0px auto;
+}
+
+.body p {
+  color: #333333;
+  font-weight: 100;
+  line-height: 34px;
+  width: 90%;
+  margin-top: 18px;
+}
+
+/* Content Button */
+
+.button {
+  border-radius: 4px;
+  color: black;
+  display: block;
+  font-weight: 700;
+  width: 200px;
+  padding: 20px;
+  margin: 40px auto;
+  border: 1px solid blue;
+}
+
+/* Content Nutrition */
+
+
+td.nutrition {
+  padding: 20px;
+  display: inline-block;
+  background-color: black;
+  list-style: none;
+  width: 200px;
+  padding: 10px 20px;
+  margin-bottom: 3px;
+}
+
+ul.nutrition {
+  padding: 20px;
+}
+
+ul.nutrition li {
+  display: inline-block;
+  background-color: black;
+  list-style: none;
+  width: 200px;
+  padding: 10px 20px;
+  margin-bottom: 3px;
+}
+
+.nutrition .category {
+  color: white;
+  font-weight: 100;
+  letter-spacing: 2px;
+  display: block;
+}
+
+.nutrition .value {
+  color: white;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+/* Table */
+
+#tablebot {
+  position: absolute;
+  margin: auto;
+  width: 40%;
+  height: auto;
+  margin-left: 30%;
+  margin-right: 30%;
+}
+
+img {
+  width: 30%;
+  height: auto;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.container {
+  margin: 0px auto;
+}
+
+
+
+
+.one {
+  border: 1px solid red;
+  margin: 60px auto;
+  padding: 10px 0px 0px 0px;
+  width: 80%;
+  background-color: darkgray;
+}
+
+
+
+.two{
+  border: 1px solid white;
+  margin: 60px auto;
+  padding: 10px 0px 0px 0px;
+  width: 80%;
+  background-color: orange;
+}
+
+.three{
+  border: 1px solid white;
+  margin: 60px auto;
+  padding: 10px 0px 0px 0px;
+  width: 80%;
+  background-color: darkred;
+}
+
+
+h1 {
+  color: white;
+  font-family: 'Ruda', sans-serif;
+  font-size: 70px;
+  font-weight: 900;
+  margin: 0px;
+  padding-top: 200px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+h2 {
+  color: white;
+  font-family: 'Catamaran', sans-serif;
+  margin: 0px;
+  text-align: left;
+}
+
+h3 {
+  color: #D7263D;
+  font-family: 'Ruda', sans-serif;
+  font-size: 25px;
+  margin: 0px;
+  position: relative;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+p {
+  color: rgba(255, 255, 255, 0.75);
+  font-family: 'Pontano Sans', sans-serif;
+  margin: 0px;
+  text-align: left;
+}
+
+.series {
+  border: 1px solid red;
+  margin: 90px auto;
+  padding: 10px 0px 0px 0px;
+  width: 40%;
+  background-color: black;
+}
+
+.cat {
+  color: white;
+  font-family: 'Ruda', sans-serif;
+  font-size: 30px;
+  font-weight: 900;
+  margin: 0px;
+  padding-top: 30px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.description {
+  display: inline-block;
+  width: 70%;
+}
+
+.book {
+  margin-top: 30px;
+  width: 100%;
+}
+
+
+a {
+  background-color: #D7263D;
+  color: black;
+  display: inline;
+  font-family: 'Pontano Sans', sans-serif;
+  font-size: 16px;
+  padding: 14px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+ul {
+  padding: 0px;
+  margin: 10px 0px;
+}
+
+li {
+  margin: 0px;
+  list-style: none;
+}
+
+/* Modal */
+
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem 1.5rem;
+  width: 50rem;
+  border-radius: 0.5rem;
+}
+
+.close-button {
+  float: right;
+  width: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  background-color: lightgray;
+}
+
+.close-button:hover {
+  background-color: darkgray;
+}
+
+.show-modal {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1.0);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+/* Form */
+
+input:focus {
+  color: white;
+}
+
+::placeholder {
+  color: white;
+  opacity: 1;
+}
+
+::-ms-input-placeholder {
+  color: white;
+}
+
+.input {
+  background: gray;
+  width: 25%;
+  font-size: 20px;
+  margin-top: 5px;
+}
+
+.send {
+  background: white;
+  width: 25%;
+  font-size: 20px;
+  margin-top: 5px;
+}
