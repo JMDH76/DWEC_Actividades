@@ -55,7 +55,7 @@ seriesButtom.addEventListener('click', () => {
     type = 'series';
     actualSerie = 0;
     divSeries.style.display = 'block';
-    changeCarouselSeries(actualActor, actualSerie);
+    changeCarousel(actualActor, actualSerie);
 });
 
 let filmsButtom = document.getElementsByClassName('nutrition')[1];
@@ -64,7 +64,7 @@ filmsButtom.addEventListener('click', () => {
     actualSerie = 3;
     divSeries.style.display = 'block';
     console.log(actualActor + ' > ' + actualSerie)
-    changeCarouselSeries(actualActor, actualSerie);
+    changeCarousel(actualActor, actualSerie);
 });
 
 
@@ -73,7 +73,7 @@ let previousButtom = document.getElementsByTagName('a')[0];
 previousButtom.addEventListener('click', () => {
     if (actualActor === 0) actualActor = actors[0].length - 1;
     else actualActor--;
-    changeCarouselSeries(actualActor, actualSerie);
+    changeCarousel(actualActor, actualSerie);
 });
 
 //Boton 'Siguiente'
@@ -81,7 +81,7 @@ let nextButtom = document.getElementsByTagName('a')[1];
 nextButtom.addEventListener('click', () => {
     if (actualActor === 2) actualActor = 0;
     else actualActor++;
-    changeCarouselSeries(actualActor, actualSerie);
+    changeCarousel(actualActor, actualSerie);
 });
 
 
@@ -96,7 +96,7 @@ previousButtom2.addEventListener('click', () => {
         else actualSerie--;
     }
     actualActor = 0;
-    changeCarouselSeries(actualActor, actualSerie);
+    changeCarousel(actualActor, actualSerie);
 });
 
 //Boton2 'Siguiente'
@@ -110,11 +110,12 @@ nextButtom2.addEventListener('click', () => {
         else actualSerie++;
     }
     actualActor = 0;
-    changeCarouselSeries(actualActor, actualSerie);
+    changeCarousel(actualActor, actualSerie);
 });
 
+
 //Realiza los cambios en el DIV
-function changeCarouselSeries(actorChar, serie) {
+function changeCarousel(actorChar, serie) {
     title.innerHTML = covers[serie].title;
     cover.src = covers[serie].cover;
     console.log("Serie > " + serie);
