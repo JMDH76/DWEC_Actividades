@@ -35,7 +35,7 @@ form3.addEventListener('submit', function (event) {
         parrafo.innerHTML = 'Hola ' + nickname + '.<br> La película que has elegido es \"' + filmName + '\" estrenada en el año ' + yearFilm +
             '. <br>Su director fué ' + directorFilm + ' y la has calificado como \"' + testCalification(filmCalification) + '.\" <br>Tu reseña sobre la película es la siguiente: \n \"' +
             filmReview + '.\"<br> Ves ' + testFilmsFrequency(radioValue) + ' películas a la semana.'
-        
+
         form3.reset();
     }
 });
@@ -76,17 +76,16 @@ function testCalification(calification) {
         return false;
     } else {
         let filmCalification = document.getElementById('category');
-        let optionCalification = filmCalification.options[filmCalification.selectedIndex];
-        let textOption = optionCalification.textContent;
+        let textOption = filmCalification.options[filmCalification.selectedIndex].innerHTML;
         return textOption;
     }
 }
 
 function testFilmsFrequency(num) {
     let frequency;
-    if (num === 0) frequency = 'Una ó ninguna';
-    else if (num === 1) frequency = 'Dos ó tres';
-    else if (num === 2) frequency = 'Cuatro ó más';
+    if (num === 0) frequency = document.getElementsByTagName('label')[0].innerHTML;
+    else if (num === 1) frequency = document.getElementsByTagName('label')[1].innerHTML;
+    else if (num === 2) frequency = document.getElementsByTagName('label')[2].innerHTML;
     return frequency;
 }
 

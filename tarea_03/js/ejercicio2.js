@@ -5,7 +5,7 @@ incorrecto,  se  borrará  el  campo  del  formulario  incorrecto  y saltará un
 alerta indicando que vuelva a introducirlo. */
 
 let form2 = document.getElementsByTagName('form')[1];
-let titlesArray2 = ['Nombre', 'Primer apellido', 'Segundo apellido', 'email'];
+//let titlesArray = ['Nombre', 'Primer apellido', 'Segundo apellido', 'email'];
 
 form2.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -19,7 +19,7 @@ function testText() {
     for (let i = 0; i < 3; i++) {
         let text = document.getElementsByTagName('input')[i + 5].value;
         if (!isNaN(text) || text === "" || text === undefined) {
-            alert('Inserte un ' + titlesArray2[i] + ' valido');
+            alert('Inserte un ' + titlesArray[i] + ' valido');
             document.getElementsByTagName('input')[i].value = '';
             resp = false;
             break;
