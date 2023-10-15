@@ -28,10 +28,10 @@ let actors = [
 
 let covers = [
     { title: 'Los Soprano', cover: 'https://www.econlib.org/wp-content/uploads/2019/04/sopranos-1024x576.jpg' },
-    { title: 'The Big Bang Theory', cover: 'https://scontent.fvlc1-2.fna.fbcdn.net/v/t1.6435-9/90498821_10157585787744678_2671171815014924288_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=300f58&_nc_ohc=nOConiNBCIMAX-7oNsL&_nc_ht=scontent.fvlc1-2.fna&oh=00_AfBz-9v2mlaM9nNKmXHkuq-nEXkqgF1WlE54NELAEZpheg&oe=65525202' },
-    { title: 'Young Sheldon', cover: 'https://okdiario.com/img/series/2017/05/18/young-sheldon.jpg' },
+    { title: 'The Big Bang Theory', cover: 'https://wallpapercave.com/wp/wp3817142.jpg' },
+    { title: 'Young Sheldon', cover: 'https://wallpapercave.com/wp/wp4092812.jpg' },
     { title: 'Salvar al soldado Rayn', cover: 'https://cdn.sincroguia.tv/uploads/programs/s/a/l/xsalvar-al-soldado-ryan-391_SPA-38.jpg.pagespeed.ic.Th1zbN5Ykw.webp' },
-    { title: 'Eduardo Manostijeras', cover: 'https://fotografias.larazon.es/clipping/cmsimages01/2019/08/09/918F3C1B-CBED-4F4D-9C26-5AEB1EA4E028/98.jpg?crop=699,393,x0,y78&width=1900&height=1069&optimize=low&format=webply' },
+    { title: 'Eduardo Manostijeras', cover: 'https://wallpapercave.com/wp/D79jddI.jpg' },
     { title: 'Alien, el octavo pasajero', cover: 'https://i0.wp.com/www.losritmos.es/wp-content/uploads/2020/10/Alien-1.jpg?w=700&ssl=1' }
 ];
 
@@ -67,27 +67,26 @@ filmsButtom.addEventListener('click', () => {
     changeCarousel(actualActor, actualSerie);
 });
 
-
-//Boton 'Anterior'
-let previousButtom = document.getElementsByTagName('a')[0];
-previousButtom.addEventListener('click', () => {
+//Botones
+//Boton 'Anterior' Interior
+let previousButtomInt = document.getElementsByTagName('a')[0];
+previousButtomInt.addEventListener('click', () => {
     if (actualActor === 0) actualActor = actors[0].length - 1;
     else actualActor--;
     changeCarousel(actualActor, actualSerie);
 });
 
-//Boton 'Siguiente'
-let nextButtom = document.getElementsByTagName('a')[1];
-nextButtom.addEventListener('click', () => {
+//Boton 'Siguiente' Interior
+let nextButtomInt = document.getElementsByTagName('a')[1];
+nextButtomInt.addEventListener('click', () => {
     if (actualActor === 2) actualActor = 0;
     else actualActor++;
     changeCarousel(actualActor, actualSerie);
 });
 
-
-//Boton2 'Anterior'
-let previousButtom2 = document.getElementsByTagName('a')[2];
-previousButtom2.addEventListener('click', () => {
+//Boton 'Anterior' Exterior
+let previousButtomExt = document.getElementsByTagName('a')[2];
+previousButtomExt.addEventListener('click', () => {
     if (type === 'series') {
         if (actualSerie === 0) actualSerie = covers.length - 4;
         else actualSerie--;
@@ -99,9 +98,9 @@ previousButtom2.addEventListener('click', () => {
     changeCarousel(actualActor, actualSerie);
 });
 
-//Boton2 'Siguiente'
-let nextButtom2 = document.getElementsByTagName('a')[3];
-nextButtom2.addEventListener('click', () => {
+//Boton 'Siguiente' Exterior
+let nextButtomExt = document.getElementsByTagName('a')[3];
+nextButtomExt.addEventListener('click', () => {
     if (type === 'series') {
         if (actualSerie === 2) actualSerie = 0;
         else actualSerie++;
@@ -114,12 +113,10 @@ nextButtom2.addEventListener('click', () => {
 });
 
 
-//Realiza los cambios en el DIV
+//Panel de datos, realiza los cambios en el DIV
 function changeCarousel(actorChar, serie) {
     title.innerHTML = covers[serie].title;
     cover.src = covers[serie].cover;
-    console.log("Serie > " + serie);
-    console.log("ActorChar > " + actorChar);
     character.innerHTML = actors[serie][actorChar].character;
     actor.innerHTML = actors[serie][actorChar].actor;
 }
