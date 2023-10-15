@@ -12,10 +12,9 @@ footer.appendChild(footerContent);
 let body = document.getElementsByTagName('body')[0];
 body.appendChild(footer);
 
-
-/* Modal */
-let modalElement = document.createElement('div');
-modalElement.setAttribute('class', 'modal');
+//Ventana Modal
+let modal = document.createElement('div');
+modal.setAttribute('class', 'modal');
 
 let modalContent = document.createElement('div');
 modalContent.setAttribute('class', 'modal-content');
@@ -24,99 +23,84 @@ let modalButton = document.createElement('span');
 modalButton.setAttribute('class', 'close-button');
 modalButton.innerHTML = 'X';
 
-let form = document.createElement('form');
+let formGroup = document.createElement('form');
 
-let divField = document.createElement('div');
 let divField1 = document.createElement('div');
 let divField2 = document.createElement('div');
 let divButton = document.createElement('div');
 
-let input1 = document.createElement('input');
-input1.setAttribute('class', 'input');
-input1.setAttribute('type', 'text');
-input1.setAttribute('name', 'name');
-input1.setAttribute('id', 'name');
-input1.setAttribute('value', '');
-input1.setAttribute('placeholder', 'Nombre');
-input1.style.marginLeft = '25px';
+//Crea los 4 inputs y los ubica en el árbol dentro de sus div's correspondientes
+let inputs = [
+    { field: 'input1', class: 'input', type: 'text', name: 'name', id: 'name', value: '', placeholder: 'Nombre' },
+    { field: 'input2', class: 'input', type: 'text', name: 'first-surname', id: 'first-surname', value: '', placeholder: 'Primer apellido' },
+    { field: 'input3', class: 'input', type: 'text', name: 'second-surname', id: 'second-surname', value: '', placeholder: 'Segundo apellido' },
+    { field: 'input4', class: 'input', type: 'text', name: 'phone', id: 'phone', value: '', placeholder: 'Número de teléfono' },
+];
 
-let input2 = document.createElement('input');
-input2.setAttribute('class', 'input');
-input2.setAttribute('type', 'text');
-input2.setAttribute('name', 'first-surname');
-input2.setAttribute('id', 'first-surname');
-input2.setAttribute('value', '');
-input2.setAttribute('placeholder', 'Primer apellido');
-input2.style.marginLeft = '5px';
+for (let i = 0; i < inputs.length; i++) {
+    let input = document.createElement('input');
+    input.setAttribute('class', inputs[i].class);
+    input.setAttribute('type', inputs[i].type);
+    input.setAttribute('name', inputs[i].name);
+    input.setAttribute('id', inputs[i].id);
+    input.setAttribute('value', inputs[i].value);
+    input.setAttribute('placeholder', inputs[i].placeholder);
 
-let input3 = document.createElement('input');
-input3.setAttribute('class', 'input');
-input3.setAttribute('type', 'text');
-input3.setAttribute('name', 'second-surname');
-input3.setAttribute('id', 'second-surname');
-input3.setAttribute('value', '');
-input3.setAttribute('placeholder', 'Segundo apellido');
+    if (i < 2) {
+        if (i === 0) input.style.marginLeft = '25px';
+        else input.style.marginLeft = '5px';
+        divField1.appendChild(input);
+    } else {
+        if (i === 3) input.style.marginLeft = '5px';
+        divField2.appendChild(input);
+    }
+}
 
-let input4 = document.createElement('input');
-input4.setAttribute('class', 'input');
-input4.setAttribute('type', 'text');
-input4.setAttribute('name', 'phone');
-input4.setAttribute('id', 'phone');
-input4.setAttribute('value', '');
-input4.setAttribute('placeholder', 'Teléfono');
-input4.style.marginLeft = '5px';
-
+//Crea boton formulario
 let formSubmitButton = document.createElement('button');
 formSubmitButton.setAttribute('class', 'send');
 formSubmitButton.setAttribute('type', 'submit');
 formSubmitButton.innerHTML = 'Enviar';
 
 //Crea la nueva estructura
-divSeries.appendChild(modalElement);
-modalElement.appendChild(modalContent);
+divSeries.appendChild(modal);
+modal.appendChild(modalContent);
 modalContent.appendChild(modalButton);
-modalContent.appendChild(form);
-form.appendChild(divField1);
-divField1.appendChild(input1);
-divField1.appendChild(input2);
-form.appendChild(divField2);
-divField2.appendChild(input3);
-divField2.appendChild(input4);
-form.appendChild(divButton);
+modalContent.appendChild(formGroup);
+formGroup.appendChild(divField1);
+formGroup.appendChild(divField2);
+formGroup.appendChild(divButton);
 divButton.appendChild(formSubmitButton);
 
 //Abre modal
-let modal = document.getElementsByClassName('modal')[0];
-footerContent.addEventListener('click', function () {
+footerContent.addEventListener('click', () => {
     modal.classList.toggle('show-modal');
 });
 
-//Botón de cierre
-modal.getElementsByClassName('close-button')[0].addEventListener('click', function () {
+//Botón 'X' de cierre Modal
+modal.getElementsByClassName('close-button')[0].addEventListener('click', () => {
     modal.classList.toggle('show-modal');
 });
 
-//Comprobación campos formulario
-let ids = [{ id: 'name', placeholder: 'nombre' }, { id: 'first-surname', placeholder: 'primer apellido' },
-{ id: 'second-surname', placeholder: 'segundo apellido' }, { id: 'phone', placeholder: 'Teléfono' }];
-
-let formulario = document.getElementsByTagName('form')[0];
-formulario.addEventListener('submit', (event) => {
+//Submit y comprobación campos formulario
+let form = document.getElementsByTagName('form')[0];
+form.addEventListener('submit', (event) => {
     event.preventDefault();
-    let flag = true;
-    for (let i = 0; i < ids.length; i++) {
-        let id = ids[i].id;
-        let placeholder = ids[i].placeholder;
-        let text = document.getElementById(ids[i].id).value;
-        let phone = document.getElementById(ids[i].id).value;
 
-        if (i < 3) {
+    let flag = true;
+    for (let i = 0; i < inputs.length; i++) {
+        let id = inputs[i].id;
+        let placeholder = inputs[i].placeholder;
+        let text = document.getElementById(inputs[i].id).value;
+        let phone = document.getElementById(inputs[i].id).value;
+
+        if (i < inputs.length - 1) {
             if (!textCheck(id, placeholder, text)) {
                 flag = false;
                 break;
             }
         } else {
-            if (!phoneCheck(id, phone)) {
+            if (!phoneCheck(id, placeholder, phone)) {
                 flag = false;
                 break;
             }
@@ -124,11 +108,12 @@ formulario.addEventListener('submit', (event) => {
     }
 
     if (flag) {
-        formulario.reset();
+        form.reset();
         modal.classList.toggle('show-modal');
     }
 });
 
+//Funciones Check texto y número teléfono
 function textCheck(id, placeholder, text) {
     let regExp = "^([A-Za-z ÑñÁáÉéÍíÓóÚú]+['\-]{0,1}[A-Za-z ÑñÁáÉéÍíÓóÚú]+)(\s+([A-Za-z ÑñÁáÉéÍíÓóÚú]+['\-]{0,1}[A-Za-z ÑñÁáÉéÍíÓóÚú]+))*$";
     if (text.match(regExp) === null) {
@@ -138,12 +123,10 @@ function textCheck(id, placeholder, text) {
     } else return true;
 }
 
-function phoneCheck(id, number) {
+function phoneCheck(id, placeholder, number) {
     if (isNaN(number) || number.length !== 9) {
-        alert('Por favor, indique un número de teléfono válido');
+        alert(`Por favor, indique un ${placeholder} válido`);
         document.getElementById(id).value = '';
         return false;
     } else return true
-
 }
-
