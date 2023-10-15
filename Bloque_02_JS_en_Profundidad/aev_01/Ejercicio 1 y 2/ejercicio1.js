@@ -55,6 +55,7 @@ seriesButtom.addEventListener('click', () => {
     type = 'series';
     actualSerie = 0;
     divSeries.style.display = 'block';
+    footer.style.display = 'block';     //Ejercicio_02
     changeCarousel(actualActor, actualSerie);
 });
 
@@ -63,7 +64,7 @@ filmsButtom.addEventListener('click', () => {
     type = 'films';
     actualSerie = 3;
     divSeries.style.display = 'block';
-    console.log(actualActor + ' > ' + actualSerie)
+    footer.style.display = 'block';     //Ejerccio_02
     changeCarousel(actualActor, actualSerie);
 });
 
