@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+
+.elementor-grid {
+    display: grid;
+}
+
+.elementor-grid-3 .elementor-grid {
+    grid-template-columns: repeat(3, 1fr)
+}
+
+.elementor-grid-1 .elementor-grid {
+    grid-template-columns: repeat(1, 1fr)
+}

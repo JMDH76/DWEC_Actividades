@@ -54,7 +54,7 @@ let seriesButtom = document.getElementsByClassName('nutrition')[0];
 seriesButtom.addEventListener('click', () => {
     type = 'series';
     actualSerie = 0;
-    divSeries.style.display = 'block';
+    divSeries.style.display = 'block';    //para inicio oculto
     footer.style.display = 'block';     //Ejercicio_02
     changeCarousel(actualActor, actualSerie);
 });

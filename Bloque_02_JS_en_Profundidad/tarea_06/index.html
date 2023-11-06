@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Tarea 6</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- One -->
+        <section id="one" class="wrapper style2 fullscreen spotlights">
+            <section>
+                <div class="content">
+                    <div class="inner">
+                        <h2>Ejercicio 1:</h2>
+                        <h3>Ejercicios para realizar en Local Storage / Session Storage:</h3>
+                        <div class="table-wrapper">
+                            <p>
+                                Realiza un script para que cuando el usuario pulse el botón “Guardar datos”, se
+                                almacenen en el navegador los datos introducidos. Cuando pulse “Mostrar datos”,
+                                realizará una búsqueda del usuario cuyo DNI se indique y se mostrarán los datos
+                                de dicho usuario guardados. Cuando pulse “Borrar registro”,
+                                borrará el usuario con el DNI indicado. Si se pulsa “Borrar todos los registros”, se
+                                borrarán todos los registros guardados.
+                            </p>
+                            <form>
+                                <h3>Datos personales</h3>
+                                <input type="text" name="name" placeholder="Nombre" required autofocus><br>
+                                <input type="text" name="first_surname" placeholder="Primer Apellido" required><br>
+                                <input type="text" name="second_surname" placeholder="Segundo Apellido" required><br>
+                                <input type="text" name="dni" placeholder="DNI" required><br>
+                                <button type="submit">Guardar datos</button>
+                            </form>
+                            <br>
+                            <label for="get_data">Indica DNI para ver datos usuario</label>
+                            <input type="text" name="get_data" placeholder="Ver usuario" required><br>
+                            <button name="button_get_data">Mostrar datos</button>
+                            <br>
+                            <div name="print_data"></div>
+                            <br>
+                            <label for="delete_item">Indica DNI para borrar registro</label>
+                            <input type="text" name="delete_item" placeholder="Borrar registro" required><br>
+                            <button name="button_delete_item">Borrar registro</button>
+                            <button name="button_delete_all">Borrar todos los registros</button>
+                        </div>
+            </section>
+        </section>
+
+        <!-- Two -->
+        <section id="two" class="wrapper style2 fullscreen spotlights">
+            <section>
+                <div class="content">
+                    <div class="inner">
+                        <h2>Ejercicio 2:</h2>
+                        <h3>Ejercicios para realizar en Local Storage / Session Storage:</h3>
+                        <div class="table-wrapper">
+                            <p id="paragraph">
+                                Realiza un script para que cuando se busque un usuario guardado en el navegador, el
+                                color de estas letras pase a ser del color guardado para ese usuario.
+                            </p>
+                            <form>
+                                <h3>Datos personales</h3>
+                                <input type="text" name="name" placeholder="Nombre" required autofocus><br>
+                                <input type="text" name="first_surname" placeholder="Primer Apellido" required><br>
+                                <input type="text" name="second_surname" placeholder="Segundo Apellido" required><br>
+                                <input type="text" name="dni" placeholder="DNI" required><br>
+                                <select id="color">
+                                    <option value="1" selected>lightgrey</option>
+                                    <option value="2">green</option>
+                                    <option value="3">beige</option>
+                                    <option value="4">yellow</option>
+                                    <option value="5">salmon</option>
+                                    <option value="6">red</option>
+                                </select>
+                                <br>
+                                <button type="submit">Guardar datos</button>
+                            </form>
+                            <br>
+                            <label for="get_data">Indica DNI para ver datos usuario</label>
+                            <input type="text" name="get_data" placeholder="Ver usuario" required><br>
+                            <button name="button_get_data">Mostrar datos</button>
+                            <br>
+                            <div name="print_data"></div>
+                            <br>
+                            <label for="delete_item">Indica DNI para borrar registro</label>
+                            <input type="text" name="delete_item" placeholder="Borrar registro" required><br>
+                            <button name="button_delete_item">Borrar registro</button>
+                            <button name="button_delete_all">Borrar todos los registros</button>
+            </section>
+        </section>
+
+        <!-- Three -->
+        <section class="wrapper style2 fullscreen spotlights">
+            <section>
+                <div class="content">
+                    <div class="inner">
+                        <h2>Ejercicio 3:</h2>
+                        <h3>Ejercicios para realizar en Local Storage / Session Storage:</h3>
+                        <p>
+                            Realizar un script para que al pulsar sobre el botón “Añadir monumento”
+                            del siguiente formulario, se guarde en el navegador el nombre del
+                            monumento, el país donde está ubicado y una URL donde se encuentra una imagen del
+                            monumento.
+                            En el buscador de monumentos al escribir el nombre del documento y pulsar “Mostrar
+                            datos”, se añadirán debajo el nombre y el país del monumento. Al pulsar “Borrar
+                            monumento” se borrará el registro del monumento y, al pulsar ”Borrar todos”, se
+                            borrarán todos los datos guardados en el navegador.
+                        </p>
+                        <main>
+                            <form>
+                                <label for="monument">Monumento</label>
+                                <input type="text" name="monument" placeholder="Indica el nombre del monumento" required>
+
+                                <label for="country">Pais</label>
+                                <input type="text" name="country" placeholder="Pais" required>
+
+                                <label for="photo">Foto</label>
+                                <input type="url" name="photo" placeholder="Indica la URL de la foto">
+
+                                <button type="submit">Añadir a la lista</button>
+                            </form>
+                            <article>
+                                <h3 id="title">Buscador de monumentos</h3>
+                                <div id="monuments_container">
+                                    <div class="card">
+                                        <img id="image"
+                                            src="https://dbdzm869oupei.cloudfront.net/img/quadres/preview/40446.png"
+                                            alt="titulo monumento">
+                                        <div>
+                                            <label for="get_data">Indica monumento para ver detalles</label>
+                                            <input type="text" name="get_data" placeholder="Nombre monumento"
+                                                required><br>
+                                            <button name="button_get_data">Mostrar datos</button>
+                                            <button name="button_delete_item">Borrar Monumento</button>
+                                            <br><br>
+                                            <button name="button_delete_all">Borrar Todos</button>
+                                            <br><br>
+                                            <h3 name="monument_title"></h3>
+                                            <h4 name="monument_country"></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </main>
+            </section>
+        </section>
+    </div>
+
+    <script src="ejercicio1.js"></script>
+    <script src="ejercicio2.js"></script>
+
+</body>
+
+</html>
