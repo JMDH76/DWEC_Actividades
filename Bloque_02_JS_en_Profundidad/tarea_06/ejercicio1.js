@@ -58,7 +58,7 @@ deleteItemButton.addEventListener('click', (event) => {
 /* Borrar todos los registros */
 deleteAllButton.addEventListener('click', (event) => {
     event.preventDefault();
-
+    
     deleteAllItems();
 });
 
