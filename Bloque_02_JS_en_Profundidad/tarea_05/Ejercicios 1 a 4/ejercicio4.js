@@ -15,7 +15,7 @@ const removePhotos = (index) => {
     createPhoto(index);     //crea la nueva foto (grande) pasando el 'index' a la función
 }
 
-const createPhoto = (index) => {                    
+const createPhoto = (index) => {
     let div = document.createElement('div');                        //crea un nuevo div con Class="photo"
     div.setAttribute('class', 'photo');                             //con Class="photo"
     div.style.backgroundImage = `url(images/${index + 1}.jpg)`      //Añade imagen al div
@@ -23,15 +23,15 @@ const createPhoto = (index) => {
     div.addEventListener('click', removePhoto);                     //Añade evento de borrar para cuando volvamos a pulsar invertir proceso
 }
 
-const removePhoto = () => {                             
+const removePhoto = () => {
     gridOne[0].className = 'elementor-grid-3';              //Cambia el nombre de la clase al original para el formato desde css 
     container[0].remove();                                  //borra el container
     createPhotos();                                         //llama a la función crearPhotos para volver a añadir las seis fotos
 }
 
-const createPhotos = () => {                                            
+const createPhotos = () => {
     gridThree[0].innerHTML = content;                                    //Vuelve a añadir el contenido html que habíamos guardado y borrado al inicio
-    Array.from(photos).map((element, index) => {                            
+    Array.from(photos).map((element, index) => {
         element.addEventListener('click', () => removePhotos(index));    //Añade de nuevo el evento de borrado a todas las fotos (como en ejercicio03)
     });
 }

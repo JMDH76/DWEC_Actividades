@@ -1,0 +1,197 @@
+body {
+    background-color: #efefef;
+    color: #3a3a3a;
+    background-color: white;
+    line-height: 1.5;
+    font-family: "Open Sans", sans-serif;
+}
+
+#page {
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1200px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+button {
+    font-family: "Open Sans", sans-serif;
+}
+
+.grid-container {
+    display: grid;
+    grid-column-gap: var(--grid-column-gap);
+    grid-row-gap: var(--grid-row-gap)
+}
+
+.grid-container {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.thumbnail {
+    height: 283px;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.grid-container {
+    grid-column-gap: 25px;
+}
+
+.card-footer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-footer .item-2 {
+    font-family: "Montserrat", Sans-serif;
+    color: var(--e-global-color-secondary);
+    margin: 10px 0px 10px 0px;
+}
+
+.card-footer .item-3 {
+    font-family: "Montserrat", Sans-serif;
+    font-size: 21px;
+    text-transform: uppercase;
+    line-height: 1.3em;
+    color: #C4001A;
+    margin: 10px 0px 10px 0px;
+    padding: 15px 0px 0px 0px;
+}
+
+.card {
+    position: relative;
+}
+
+.card .botonera {
+    opacity: 0.0;
+    position: absolute;
+    top: 180px;
+    right: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.card:hover .botonera {
+    opacity: 1;
+    transition: 0.5s;
+}
+
+.item-0 {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+}
+
+.item-1 {
+    opacity: 0.0;
+    text-align: center;
+    font-weight: 500;
+    width: 100%;
+    color: white;
+    position: absolute;
+    top: 70px;
+}
+
+.item-2 {
+    opacity: 0.0;
+    text-align: center;
+    font-weight: 500;
+    width: 100%;
+    color: white;
+    position: absolute;
+    top: 120px;
+}
+
+.card:hover .item-2 {
+    opacity: 1;
+    transition: 0.5s;
+}
+
+.card:hover .item-1 {
+    opacity: 1;
+    transition: 0.5s;
+}
+
+#trigger {
+    font-family: "Roboto Condensed", Sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+    background-color: #C4001A;
+    padding: 10px 50px 10px 50px;
+}
+
+#render-more {
+    text-align: center;
+}
+
+#render-more button {
+    background-color: white;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.9px;
+    color: #C4001A;
+    border: solid 1px #C4001A;
+    margin-bottom: 30px;
+    margin-top: 20px;
+
+}
+
+#render-more button:hover {
+    background-color: rgba(196, 0, 26, 0.05);
+}
+
+
+.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.1);
+    transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 1rem 1.5rem;
+    height: 400px;
+    width: 500px;
+    border-radius: 0.5rem;
+}
+
+.close-button {
+    float: right;
+    width: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    background-color: lightgray;
+}
+
+.close-button:hover {
+    background-color: darkgray;
+}
+
+.show-modal {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1.0);
+    transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
