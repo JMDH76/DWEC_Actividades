@@ -3,7 +3,6 @@ const getData = async (page) => {
     try {
         const response = await axios.get(`https://rickandmortyapi.com/api/character/?page=${page}`);
 
-        //document.getElementById('trigger').setAttribute('class', 'trigger');
         let pageNumber = document.getElementById('number-page').textContent = page;
 
         buildCards(2, response);
@@ -26,7 +25,6 @@ const showMore = (response) => {
                 element.remove();
             }
         })
-
         buildCards(19, response);
         modalWindow(response);
         //getData(2);
@@ -35,24 +33,23 @@ const showMore = (response) => {
 
 
 const modalWindow = (response) => {
-    let modalButton = document.getElementsByClassName('trigger');
-    let modalContainer = document.getElementsByClassName('modal');
 
-    Array.from(modalButton).map((element, index) => {
+    let modalButtons = document.getElementsByClassName('trigger');
+    let modalContainer = document.getElementsByClassName('modal')[0];
+    let closeButton = document.getElementsByClassName('close-button')[0];
+    let modalImage = document.getElementsByClassName('modal-content')[0];
+    let modalText = document.getElementsByTagName('h1')[1];
 
-        document.getElementsByClassName('trigger')[index].addEventListener('click', () => {
-
-            modalContainer[0].classList.toggle('show-modal');
-            let modalImage = document.getElementsByClassName('modal-content')[0];
+    Array.from(modalButtons).map((element, index) => {
+        modalButtons[index].addEventListener('click', () => {
+            modalContainer.classList.toggle('show-modal');
             modalImage.style.backgroundImage = `url(${response.data.results[index].image})`;
             modalImage.style.backgroundSize = 'cover';
-
-            let modalText = document.getElementsByTagName('h1')[1];
             modalText.textContent = response.data.results[index].name;
         });
-        
-        document.getElementsByClassName('close-button')[0].addEventListener('click', function () {
-            modalContainer[0].classList.toggle('show-modal');
+
+        closeButton.addEventListener('click', function () {
+            modalContainer.classList.toggle('show-modal');
         });
     });
 }
