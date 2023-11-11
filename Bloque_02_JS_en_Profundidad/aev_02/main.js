@@ -3,11 +3,9 @@ const getData = async (page) => {
     try {
         const response = await axios.get(`https://rickandmortyapi.com/api/character/?page=${page}`);
 
-        //document.getElementById('trigger').setAttribute('class', 'trigger');
         let pageNumber = document.getElementById('number-page').textContent = page;
 
-        buildCards(2, response);
-        modalWindow(response);
+        buildCards(3, response);
         showMore(response);
 
     } catch (error) {
@@ -18,56 +16,84 @@ const getData = async (page) => {
 
 const showMore = (response) => {
     const showMoreButton = document.getElementsByTagName('button')[0];
-    const cards = Array.from(document.getElementsByClassName('card'));
 
     showMoreButton.addEventListener('click', () => {
-        cards.map((element, index) => {
-            if (index > 0) {
-                element.remove();
-            }
-        })
+        console.log('Pulso botón > Mostrar más')
+        buildCards(20, response);
+        nextPageButton(response);
+        document.getElementsByTagName('button')[0].remove();
+    })
+}
 
-        buildCards(19, response);
-        modalWindow(response);
-        //getData(2);
+
+const nextPageButton = (response) => {
+
+    const buttonContiner = document.getElementById('render-more');
+    const nextButton = document.createElement('button');
+    nextButton.innerHTML = 'SIGUIENTE';
+    nextButton.setAttribute('id', 'siguiente');
+    buttonContiner.appendChild(nextButton);
+
+    nextButton.addEventListener('click', (event) => {
+        const next = document.createElement('button');
+        next.innerHTML = 'MOSTRAR MÁS';
+        buttonContiner.appendChild(next);
+        document.getElementById('siguiente').remove();
+        showMore(response)
+        getData(2);
     })
 }
 
 
 const modalWindow = (response) => {
-    let modalButton = document.getElementsByClassName('trigger');
-    let modalContainer = document.getElementsByClassName('modal');
+    console.log('>> Entro en Modal')
+    let modalButtons = document.getElementsByClassName('trigger');
+    let modalContainer = document.getElementsByClassName('modal')[0];
+    let closeButton = document.getElementsByClassName('close-button')[0];
+    let modalImage = document.getElementsByClassName('modal-content')[0];
+    let modalText = document.getElementsByTagName('h1')[1];
 
-    Array.from(modalButton).map((element, index) => {
+    console.log('Butones de modales > ' + Array.from(modalButtons).length);
 
-        document.getElementsByClassName('trigger')[index].addEventListener('click', () => {
-
-            modalContainer[0].classList.toggle('show-modal');
-            let modalImage = document.getElementsByClassName('modal-content')[0];
+    Array.from(modalButtons).map((element, index) => {
+        modalButtons[index].addEventListener('click', () => {
+            modalContainer.classList.add('show-modal');
             modalImage.style.backgroundImage = `url(${response.data.results[index].image})`;
             modalImage.style.backgroundSize = 'cover';
-
-            let modalText = document.getElementsByTagName('h1')[1];
             modalText.textContent = response.data.results[index].name;
+            console.log('>> Modal 1 pasado')
         });
-        
-        document.getElementsByClassName('close-button')[0].addEventListener('click', function () {
-            modalContainer[0].classList.toggle('show-modal');
+
+        closeButton.addEventListener('click', () => {
+            modalContainer.classList.remove('show-modal');
+            console.log('>> Modal 2 pasado')
         });
     });
 }
 
 
-const buildCards = (num, response) => {
+const buildCards = (newCards, response) => {
 
     const container = document.getElementsByClassName('grid-container')[0];
     const cards = document.getElementsByClassName('card');
     document.getElementById('trigger').setAttribute('class', 'trigger');
 
-    for (let i = 0; i < num; i++) {
+    console.log('Cartas 1 > ' + Array.from(cards).length + ' > al pulsar el botón')
+
+    Array.from(cards).map((element, index) => {
+        if (index > 0) {
+            element.remove();
+        }
+    })
+    console.log('Cartas 2 > ' + Array.from(cards).length + ' > después de borrar')
+
+    for (let i = 0; i < newCards; i++) {
         let cardClone = cards[0].cloneNode(true);
         container.appendChild(cardClone);
     }
+    console.log('Cartas 3 > ' + Array.from(cards).length + ' > después de clonar')
+    cards[0].remove();
+    console.log('Cartas 4 > ' + Array.from(cards).length + ' > después de borrar')
 
     Array.from(cards).map((element, index) => {
         document.getElementsByClassName('item-0')[index].style.backgroundImage = `url(${response.data.results[index].image})`;
@@ -76,6 +102,8 @@ const buildCards = (num, response) => {
         document.getElementsByClassName('item-3')[index].textContent = response.data.results[index].name;
         document.getElementsByClassName('item-4')[index].textContent = response.data.results[index].status;
     });
+
+    modalWindow(response);
 }
 
 window.onload = getData(1);
