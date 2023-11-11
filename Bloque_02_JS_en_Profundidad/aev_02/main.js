@@ -15,58 +15,42 @@ const getData = async (page) => {
 
 
 const showMore = (response) => {
-    const showMoreButton = document.getElementsByTagName('button')[0];
-
-    showMoreButton.addEventListener('click', () => {
-        console.log('Pulso botón > Mostrar más')
-        buildCards(20, response);
-        nextPageButton(response);
-        document.getElementsByTagName('button')[0].remove();
-    })
-}
+    let showMoreButton = document.getElementsByTagName('button')[0];
+    let cards = Array.from(document.getElementsByClassName('card'));
+    let cardClone = cards[0].cloneNode(true);
 
 
-const nextPageButton = (response) => {
+    console.log('cards > ' + cards.length);
 
-    const buttonContiner = document.getElementById('render-more');
-    const nextButton = document.createElement('button');
-    nextButton.innerHTML = 'SIGUIENTE';
-    nextButton.setAttribute('id', 'siguiente');
-    buttonContiner.appendChild(nextButton);
+    showMoreButton.addEventListener('click', () => {   
+           cards.map((element, index) => {
+               if (index > 0) {
+                   element.remove();
+               } 
+            })
 
-    nextButton.addEventListener('click', (event) => {
-        const next = document.createElement('button');
-        next.innerHTML = 'MOSTRAR MÁS';
-        buttonContiner.appendChild(next);
-        document.getElementById('siguiente').remove();
-        showMore(response)
-        getData(2);
+        buildCards(19, response, cardClone);
+        modalWindow(response);
     })
 }
 
 
 const modalWindow = (response) => {
-    console.log('>> Entro en Modal')
-    let modalButtons = document.getElementsByClassName('trigger');
-    let modalContainer = document.getElementsByClassName('modal')[0];
-    let closeButton = document.getElementsByClassName('close-button')[0];
-    let modalImage = document.getElementsByClassName('modal-content')[0];
-    let modalText = document.getElementsByTagName('h1')[1];
-
-    console.log('Butones de modales > ' + Array.from(modalButtons).length);
-
-    Array.from(modalButtons).map((element, index) => {
-        modalButtons[index].addEventListener('click', () => {
-            modalContainer.classList.add('show-modal');
+    let modalButton = document.getElementsByClassName('trigger');
+    let modalContainer = document.getElementsByClassName('modal');
+    //console.log('modal > ' + Array.from(modalButton).length)
+    Array.from(modalButton).map((element, index) => {
+       
+        document.getElementsByClassName('trigger')[index].addEventListener('click', function () {
+            modalContainer[0].classList.toggle('show-modal');
+            let modalImage = document.getElementsByClassName('modal-content')[0];
             modalImage.style.backgroundImage = `url(${response.data.results[index].image})`;
             modalImage.style.backgroundSize = 'cover';
             modalText.textContent = response.data.results[index].name;
             console.log('>> Modal 1 pasado')
         });
-
-        closeButton.addEventListener('click', () => {
-            modalContainer.classList.remove('show-modal');
-            console.log('>> Modal 2 pasado')
+        document.getElementsByClassName('close-button')[0].addEventListener('click', function () {
+            modalContainer[0].classList.toggle('show-modal');
         });
     });
 }
@@ -78,17 +62,8 @@ const buildCards = (newCards, response) => {
     const cards = document.getElementsByClassName('card');
     document.getElementById('trigger').setAttribute('class', 'trigger');
 
-    console.log('Cartas 1 > ' + Array.from(cards).length + ' > al pulsar el botón')
-
-    Array.from(cards).map((element, index) => {
-        if (index > 0) {
-            element.remove();
-        }
-    })
-    console.log('Cartas 2 > ' + Array.from(cards).length + ' > después de borrar')
-
-    for (let i = 0; i < newCards; i++) {
-        let cardClone = cards[0].cloneNode(true);
+    for (let i = 0; i < num; i++) {
+        let cardClone = card.cloneNode(true);
         container.appendChild(cardClone);
     }
     console.log('Cartas 3 > ' + Array.from(cards).length + ' > después de clonar')
