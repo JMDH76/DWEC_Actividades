@@ -1,8 +1,7 @@
-
 const getData = async (page) => {
+    console.log('GetData');
     try {
         const response = await axios.get(`https://rickandmortyapi.com/api/character/?page=${page}`);
-
         let pageNumber = document.getElementById('number-page').textContent = page;
 
         buildCards(3, response);
@@ -15,61 +14,87 @@ const getData = async (page) => {
 
 
 const showMore = (response) => {
-    let showMoreButton = document.getElementsByTagName('button')[0];
-    let cards = Array.from(document.getElementsByClassName('card'));
-    let cardClone = cards[0].cloneNode(true);
+    console.log('ShowMore');
+    const showMoreButton = document.getElementsByTagName('button')[0];
+
+    showMoreButton.addEventListener('click', () => {
+        buildCards(20, response);
+        nextButtonClick(response);
+        //document.getElementsByTagName('button')[0].style.display = 'none';
+    })
+
+}
 
 
-    console.log('cards > ' + cards.length);
+const nextButtonClick = (response) => {
+    console.log('nextButtonClick');
+    const showMoreButton = document.getElementsByTagName('button')[0];
+    const buttonContiner = document.getElementById('render-more');
+    const nextButton = document.createElement('button');
+    nextButton.innerHTML = 'SIGUIENTE';
+    nextButton.setAttribute('id', 'siguiente');
+    buttonContiner.appendChild(nextButton);
 
-    showMoreButton.addEventListener('click', () => {   
-           cards.map((element, index) => {
-               if (index > 0) {
-                   element.remove();
-               } 
-            })
-
-        buildCards(19, response, cardClone);
-        modalWindow(response);
+    nextButton.addEventListener('click', (event) => {
+        document.getElementsByTagName('button')[0].style.display = 'block';
+        document.getElementById('siguiente').remove();
+        getData(2);
     })
 }
 
 
 const modalWindow = (response) => {
-    let modalButton = document.getElementsByClassName('trigger');
-    let modalContainer = document.getElementsByClassName('modal');
-    //console.log('modal > ' + Array.from(modalButton).length)
-    Array.from(modalButton).map((element, index) => {
-       
-        document.getElementsByClassName('trigger')[index].addEventListener('click', function () {
-            modalContainer[0].classList.toggle('show-modal');
-            let modalImage = document.getElementsByClassName('modal-content')[0];
+    console.log('Entro en modalWindow');
+    const modalButtons = document.getElementsByClassName('trigger');
+    const modalContainer = document.getElementsByClassName('modal')[0];
+    const closeButton = document.getElementsByClassName('close-button')[0];
+    const modalImage = document.getElementsByClassName('modal-content')[0];
+    const modalText = document.getElementsByTagName('h1')[1];
+
+    Array.from(modalButtons).map((element, index) => {
+        modalButtons[index].addEventListener('click', () => {
+            modalContainer.classList.add('show-modal');
             modalImage.style.backgroundImage = `url(${response.data.results[index].image})`;
             modalImage.style.backgroundSize = 'cover';
             modalText.textContent = response.data.results[index].name;
-            console.log('>> Modal 1 pasado')
         });
-        document.getElementsByClassName('close-button')[0].addEventListener('click', function () {
-            modalContainer[0].classList.toggle('show-modal');
+
+        closeButton.addEventListener('click', function () {
+            modalContainer.classList.remove('show-modal');
+            console.log('ok')
         });
     });
 }
 
 
 const buildCards = (newCards, response) => {
-
+    console.log('Entro en BuildCards');
+    console.log(response.data.results)
     const container = document.getElementsByClassName('grid-container')[0];
-    const cards = document.getElementsByClassName('card');
+    let cards = document.getElementsByClassName('card');
     document.getElementById('trigger').setAttribute('class', 'trigger');
+    
+    
+    console.log('Cartas > 1' + Array.from(cards).length)
 
-    for (let i = 0; i < num; i++) {
-        let cardClone = card.cloneNode(true);
+    Array.from(cards).map((element, index) => {
+        if (index > 0) {
+            element.remove();
+        }
+    })
+
+    console.log('Cartas2 > ' + Array.from(cards).length)
+    
+    for (let i = 0; i < newCards; i++) {
+        let cardClone = cards[0].cloneNode(true);
         container.appendChild(cardClone);
     }
-    console.log('Cartas 3 > ' + Array.from(cards).length + ' > después de clonar')
+    console.log('Cartas3 > ' + Array.from(cards).length)
+    
     cards[0].remove();
-    console.log('Cartas 4 > ' + Array.from(cards).length + ' > después de borrar')
 
+    console.log('Cartas4 > ' + Array.from(cards).length)
+    
     Array.from(cards).map((element, index) => {
         document.getElementsByClassName('item-0')[index].style.backgroundImage = `url(${response.data.results[index].image})`;
         document.getElementsByClassName('item-1')[index].textContent = response.data.results[index].gender;
