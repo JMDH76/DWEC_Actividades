@@ -15,7 +15,7 @@ const getData = async (page, flag) => {
             showMore(response, actualPage);
         }
         favoritesPage(response, actualPage);
-        
+
     } catch (error) {
         console.error(error);
     }
@@ -32,12 +32,13 @@ const favoritesPage = (response, actualPage) => {
     title[0].addEventListener('click', () => {
 
         if (localStorage.length > 0) {
-            const showMoreButton = document.getElementsByTagName('button')[0];
-            showMoreButton.remove();
-
+            const showMoreButton = document.getElementsByTagName('button');
+            Array.from(showMoreButton).map((element, index) => {
+                showMoreButton[index].remove();
+            })
             const favoritesBackButton = document.createElement('button');
             favoritesBackButton.innerHTML = "VOLVER";
-
+            
             const buttonContainer = document.getElementById('render-more');
             buttonContainer.appendChild(favoritesBackButton)
 
@@ -54,7 +55,7 @@ const favoritesPage = (response, actualPage) => {
             })
             buildCards(favoritesResponse.length - 1, favoritesResponse, actualPage);
             document.getElementById('number-page').textContent = "Favoritos";
-            
+
         } else alert('No hay ningún personaje en Favoritos')
 
     })
