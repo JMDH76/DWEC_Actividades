@@ -1,48 +1,64 @@
-const getData = async (page) => {
+const getData = async (page, flag) => {
     try {
         let response = await axios.get(`https://rickandmortyapi.com/api/character/?page=${page}`);
         document.getElementById('number-page').textContent = page;
         response = response.data.results;
-        console.log(response)
-        console.log(typeof (response));
+
         const actualPage = parseInt(document.getElementById('number-page').textContent);
 
-        buildCards(2, response, actualPage);
-        showMore(response, actualPage);
-        favorites();
+        if (flag === true) {
+            buildCards(19, response, actualPage);
+            nextPageButtonClick(actualPage);
+        }
+        else {
+            buildCards(2, response, actualPage);
+            showMore(response, actualPage);
+        }
+        favoritesPage(response, actualPage);
+        
     } catch (error) {
         console.error(error);
     }
 }
 
 
-const favorites = (actualPage) => {
-    let response = [];
+const favoritesPage = (response, actualPage) => {
+
+    //arreglar para cuando no hayan favoritos
+
+    let favoritesResponse = [];
     const title = document.getElementsByTagName('h1');
 
     title[0].addEventListener('click', () => {
 
-        Array.from(localStorage).map((element, index) => {
-            let key = localStorage.key(index);
-            let item = localStorage.getItem(key);
+        if (localStorage.length > 0) {
+            const showMoreButton = document.getElementsByTagName('button')[0];
+            showMoreButton.remove();
 
-            item = JSON.parse(item);
-            response.push(item)
+            const favoritesBackButton = document.createElement('button');
+            favoritesBackButton.innerHTML = "VOLVER";
 
-        })
-        console.log(response)
-        buildCards(response.length-1, response, actualPage);
+            const buttonContainer = document.getElementById('render-more');
+            buttonContainer.appendChild(favoritesBackButton)
+
+            favoritesBackButton.addEventListener('click', () => {
+                favoritesBackButton.remove();
+                getData(1, true)
+            })
+
+            Array.from(localStorage).map((element, index) => {
+                let key = localStorage.key(index);
+                let item = localStorage.getItem(key);
+                item = JSON.parse(item);
+                favoritesResponse.push(item)
+            })
+            buildCards(favoritesResponse.length - 1, favoritesResponse, actualPage);
+            document.getElementById('number-page').textContent = "Favoritos";
+            
+        } else alert('No hay ningún personaje en Favoritos')
 
     })
-
 }
-
-
-/* Obtener datos de localStorage */
-/* let getFavoritesData = (key) => {
-    let data = window.localStorage.getItem(key);
-    return data;
-} */
 
 
 /* Guardar localStorage */
@@ -86,7 +102,7 @@ const previousPageButtonClick = (actualPage) => {
         const showMoreButton = document.createElement('button');
         showMoreButton.innerHTML = 'MOSTRAR MÁS';
         buttonContainer.appendChild(showMoreButton);
-        getData(actualPage - 1);
+        getData(actualPage - 1, false);
     })
 }
 
@@ -106,7 +122,7 @@ const nextPageButtonClick = (actualPage) => {
         const showMoreButton = document.createElement('button');
         showMoreButton.innerHTML = 'MOSTRAR MÁS';
         buttonContainer.appendChild(showMoreButton);
-        getData(actualPage + 1);
+        getData(actualPage + 1, false);
     })
 }
 
@@ -171,4 +187,4 @@ const buildCards = (newCards, response, actualPage) => {
     modalWindow(response);
 }
 
-window.onload = getData(1);
+window.onload = getData(1, false);
