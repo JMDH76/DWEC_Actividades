@@ -21,30 +21,29 @@ const getData = async (page, allItems) => {
     }
 }
 
-
+/* Abrir favoritos */
 const favoritesPage = (actualPage) => {
-
     let favoritesResponse = [];
     const title = document.getElementsByTagName('h1');
-
+    
     title[0].addEventListener('click', () => {
-
         if (localStorage.length > 0) {
             const showMoreButton = document.getElementsByTagName('button');
             Array.from(showMoreButton).map((element, index) => {
                 showMoreButton[0].remove();
-            })
-            const favoritesBackButton = document.createElement('button');
-            favoritesBackButton.innerHTML = "VOLVER";
+            });
 
             const buttonContainer = document.getElementById('render-more');
+            const favoritesBackButton = document.createElement('button');
+            favoritesBackButton.innerHTML = "VOLVER";
             buttonContainer.appendChild(favoritesBackButton)
 
             favoritesBackButton.addEventListener('click', () => {
                 favoritesBackButton.remove();
                 getData(1, true)
-            })
+            });
 
+            /* Extraer datos de localStorage y crear array con los datos */
             Array.from(localStorage).map((element, index) => {
                 let key = localStorage.key(index);
                 let item = localStorage.getItem(key);
@@ -54,11 +53,9 @@ const favoritesPage = (actualPage) => {
             buildCards(favoritesResponse.length - 1, favoritesResponse, actualPage, false);
             document.getElementById('number-page').textContent = "Favoritos";
 
-        } else alert('No hay ningún personaje en Favoritos')
-
-    })
+        } else alert('No hay ningún personaje en Favoritos');
+    });
 }
-
 
 /* Guardar localStorage */
 let saveFavoritesData = (key, data) => {
@@ -81,7 +78,7 @@ const showMore = (response, actualPage) => {
             }
             buildCards(19, response, actualPage, true);
         }
-    })
+    });
 }
 
 /* Botón 'Anterior' */
@@ -93,7 +90,7 @@ const previousPageButtonClick = (actualPage) => {
     previousPageButton.setAttribute('id', 'anterior');
     buttonContainer.appendChild(previousPageButton);
 
-    previousPageButton.addEventListener('click', (event) => {
+    previousPageButton.addEventListener('click', () => {
         const nextPageButton = document.getElementById('siguiente');
         previousPageButton.remove();
         if (nextPageButton) nextPageButton.remove();
@@ -102,7 +99,7 @@ const previousPageButtonClick = (actualPage) => {
         showMoreButton.innerHTML = 'MOSTRAR MÁS';
         buttonContainer.appendChild(showMoreButton);
         getData(actualPage - 1, false);
-    })
+    });
 }
 
 /* Botón 'Siguiente' */
@@ -113,7 +110,7 @@ const nextPageButtonClick = (actualPage) => {
     nextPageButton.setAttribute('id', 'siguiente');
     buttonContainer.appendChild(nextPageButton);
 
-    nextPageButton.addEventListener('click', (event) => {
+    nextPageButton.addEventListener('click', () => {
         const previousPageButton = document.getElementById('anterior');
         nextPageButton.remove();
         if (previousPageButton) previousPageButton.remove();
@@ -122,7 +119,7 @@ const nextPageButtonClick = (actualPage) => {
         showMoreButton.innerHTML = 'MOSTRAR MÁS';
         buttonContainer.appendChild(showMoreButton);
         getData(actualPage + 1, false);
-    })
+    });
 }
 
 /* Crea el modal y le asigna los valores correspondientes */
@@ -157,7 +154,7 @@ const buildCards = (newCards, response, actualPage, favoritesSave) => {
         if (index > 0) {
             element.remove();
         }
-    })
+    });
 
     /* Clona la primera y las añade */
     for (let i = 0; i < newCards; i++) {
@@ -181,7 +178,7 @@ const buildCards = (newCards, response, actualPage, favoritesSave) => {
                 key = actualPage + '' + index;
                 let data = { 'image': image, 'name': name, 'gender': gender, 'status': status, 'species': species };
                 saveFavoritesData(key, data);
-            })
+            });
         }
     });
     modalWindow(response);
