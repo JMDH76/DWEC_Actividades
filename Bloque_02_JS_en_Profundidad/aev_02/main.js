@@ -1,4 +1,4 @@
-const getData = async (page, flag) => {
+const getData = async (page, allItems) => {
     try {
         let response = await axios.get(`https://rickandmortyapi.com/api/character/?page=${page}`);
         document.getElementById('number-page').textContent = page;
@@ -6,15 +6,15 @@ const getData = async (page, flag) => {
 
         const actualPage = parseInt(document.getElementById('number-page').textContent);
 
-        if (flag === true) {
-            buildCards(19, response, actualPage);
+        if (allItems === true) {
+            buildCards(19, response, actualPage, true);
             nextPageButtonClick(actualPage);
         }
         else {
-            buildCards(2, response, actualPage);
+            buildCards(2, response, actualPage, true);
             showMore(response, actualPage);
         }
-        favoritesPage(response, actualPage);
+        favoritesPage(actualPage);
 
     } catch (error) {
         console.error(error);
@@ -22,9 +22,7 @@ const getData = async (page, flag) => {
 }
 
 
-const favoritesPage = (response, actualPage) => {
-
-    //arreglar para cuando no hayan favoritos
+const favoritesPage = (actualPage) => {
 
     let favoritesResponse = [];
     const title = document.getElementsByTagName('h1');
@@ -34,11 +32,11 @@ const favoritesPage = (response, actualPage) => {
         if (localStorage.length > 0) {
             const showMoreButton = document.getElementsByTagName('button');
             Array.from(showMoreButton).map((element, index) => {
-                showMoreButton[index].remove();
+                showMoreButton[0].remove();
             })
             const favoritesBackButton = document.createElement('button');
             favoritesBackButton.innerHTML = "VOLVER";
-            
+
             const buttonContainer = document.getElementById('render-more');
             buttonContainer.appendChild(favoritesBackButton)
 
@@ -53,7 +51,7 @@ const favoritesPage = (response, actualPage) => {
                 item = JSON.parse(item);
                 favoritesResponse.push(item)
             })
-            buildCards(favoritesResponse.length - 1, favoritesResponse, actualPage);
+            buildCards(favoritesResponse.length - 1, favoritesResponse, actualPage, false);
             document.getElementById('number-page').textContent = "Favoritos";
 
         } else alert('No hay ningún personaje en Favoritos')
@@ -81,7 +79,7 @@ const showMore = (response, actualPage) => {
                 previousPageButtonClick(actualPage);
                 nextPageButtonClick(actualPage);
             }
-            buildCards(19, response, actualPage);
+            buildCards(19, response, actualPage, true);
         }
     })
 }
@@ -149,7 +147,7 @@ const modalWindow = (response) => {
 }
 
 /* Crea los Cards necesarios */
-const buildCards = (newCards, response, actualPage) => {
+const buildCards = (newCards, response, actualPage, favoritesSave) => {
     const container = document.getElementsByClassName('grid-container')[0];
     const cards = document.getElementsByClassName('card');
     document.getElementById('trigger').setAttribute('class', 'trigger');
@@ -177,13 +175,14 @@ const buildCards = (newCards, response, actualPage) => {
         let name = document.getElementsByClassName('item-3')[index].textContent = response[index].name;
         let status = document.getElementsByClassName('item-4')[index].textContent = response[index].status
 
-
-        /* Guardar en favoritos */
-        document.getElementsByClassName('item-3')[index].addEventListener('click', () => {
-            key = actualPage + '' + index;
-            let data = { 'image': image, 'name': name, 'gender': gender, 'status': status, 'species': species };
-            saveFavoritesData(key, data);
-        })
+        /* Guardar en favoritos. Solo deja desde fuera de favoritos */
+        if (favoritesSave) {
+            document.getElementsByClassName('item-3')[index].addEventListener('click', () => {
+                key = actualPage + '' + index;
+                let data = { 'image': image, 'name': name, 'gender': gender, 'status': status, 'species': species };
+                saveFavoritesData(key, data);
+            })
+        }
     });
     modalWindow(response);
 }
