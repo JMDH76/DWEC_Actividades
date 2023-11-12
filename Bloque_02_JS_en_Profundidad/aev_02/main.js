@@ -25,11 +25,11 @@ const getData = async (page, allItems) => {
 const favoritesPage = (actualPage) => {
     let favoritesResponse = [];
     const title = document.getElementsByTagName('h1');
-    
+
     title[0].addEventListener('click', () => {
         if (localStorage.length > 0) {
             const showMoreButton = document.getElementsByTagName('button');
-            Array.from(showMoreButton).map((element, index) => {
+            Array.from(showMoreButton).map(() => {
                 showMoreButton[0].remove();
             });
 
@@ -52,8 +52,7 @@ const favoritesPage = (actualPage) => {
             })
             buildCards(favoritesResponse.length - 1, favoritesResponse, actualPage, false);
             document.getElementById('number-page').textContent = "Favoritos";
-
-        } else alert('No hay ningún personaje en Favoritos');
+        }
     });
 }
 
@@ -95,10 +94,7 @@ const previousPageButtonClick = (actualPage) => {
         previousPageButton.remove();
         if (nextPageButton) nextPageButton.remove();
 
-        const showMoreButton = document.createElement('button');
-        showMoreButton.innerHTML = 'MOSTRAR MÁS';
-        buttonContainer.appendChild(showMoreButton);
-        getData(actualPage - 1, false);
+        showMoreButton(actualPage, 1);
     });
 }
 
@@ -115,11 +111,20 @@ const nextPageButtonClick = (actualPage) => {
         nextPageButton.remove();
         if (previousPageButton) previousPageButton.remove();
 
-        const showMoreButton = document.createElement('button');
-        showMoreButton.innerHTML = 'MOSTRAR MÁS';
-        buttonContainer.appendChild(showMoreButton);
-        getData(actualPage + 1, false);
+        showMoreButton(actualPage, 2);
     });
+}
+
+/* Botón Mostrsr más */
+const showMoreButton = (actualPage, flag) => {
+    const buttonContainer = document.getElementById('render-more');
+    const showMoreButton = document.createElement('button');
+    showMoreButton.innerHTML = 'MOSTRAR MÁS';
+    buttonContainer.appendChild(showMoreButton);
+
+    if (flag === 1) {
+        getData(actualPage - 1, false);
+    } else getData(actualPage + 1, false);
 }
 
 /* Crea el modal y le asigna los valores correspondientes */
@@ -146,6 +151,7 @@ const modalWindow = (response) => {
 /* Crea los Cards necesarios */
 const buildCards = (newCards, response, actualPage, favoritesSave) => {
     const container = document.getElementsByClassName('grid-container')[0];
+
     const cards = document.getElementsByClassName('card');
     document.getElementById('trigger').setAttribute('class', 'trigger');
 
@@ -165,23 +171,24 @@ const buildCards = (newCards, response, actualPage, favoritesSave) => {
     /* Da los valores correspondientes a cada Card */
     Array.from(cards).map((element, index) => {
 
-        let image = document.getElementsByClassName('item-0')[index].style.backgroundImage = `url(${response[index].image})`;
-        image = image.replace(/(url\(|\)|"|')/g, '');
-        let gender = document.getElementsByClassName('item-1')[index].textContent = response[index].gender;
-        let species = document.getElementsByClassName('item-2')[index].textContent = response[index].species;
-        let name = document.getElementsByClassName('item-3')[index].textContent = response[index].name;
-        let status = document.getElementsByClassName('item-4')[index].textContent = response[index].status
+        const image = document.getElementsByClassName('item-0')[index].style.backgroundImage = `url(${response[index].image})`;
+        const imageUrl = image.replace(/(url\(|\)|"|')/g, '');
+        document.getElementsByClassName('item-0')[index].style.transition = '2s';
+
+        const gender = document.getElementsByClassName('item-1')[index].textContent = response[index].gender;
+        const species = document.getElementsByClassName('item-2')[index].textContent = response[index].species;
+        const name = document.getElementsByClassName('item-3')[index].textContent = response[index].name;
+        const status = document.getElementsByClassName('item-4')[index].textContent = response[index].status
 
         /* Guardar en favoritos. Solo deja desde fuera de favoritos */
         if (favoritesSave) {
             document.getElementsByClassName('item-3')[index].addEventListener('click', () => {
                 key = actualPage + '' + index;
-                let data = { 'image': image, 'name': name, 'gender': gender, 'status': status, 'species': species };
+                let data = { 'image': imageUrl, 'name': name, 'gender': gender, 'status': status, 'species': species };
                 saveFavoritesData(key, data);
             });
         }
     });
     modalWindow(response);
 }
-
 window.onload = getData(1, false);

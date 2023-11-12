@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escribir Nombre con Retraso</title>
+    <style>
+        #miH1 {
+            font-size: 2em;
+            font-family: Arial, sans-serif;
+            white-space: nowrap;
+            /* Evitar el salto de línea */
+            overflow: hidden;
+            border-right: 2px solid #333;
+            /* Simular un cursor de escritura */
+        }
+
+        p {
+            font-size: 26px;
+            margin-left: 150px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 id="miH1"></h1>
+    <div style="display:inline-flex">
+        <p id="letra_1">R</p>
+    </div>
+
+
+
+
+    <script>
+generarArray()
+
+        var miH1 = document.getElementById("miH1");
+        var p1 = document.getElementById("letra_1");
+
+
+
+        function generarArray() {
+            const abecedario = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const letters = abecedario.split("");
+            console.log(abecedario)
+
+            //const letter = Math.floor(Math.random() * letters.length);
+            //const lettersArray = [];
+
+        }
+
+        
+
+    </script>
+
+</body>
+
+</html>
