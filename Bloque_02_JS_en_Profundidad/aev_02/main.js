@@ -28,7 +28,7 @@ const favoritesPage = (actualPage) => {
 
     title[0].addEventListener('click', () => {
         if (localStorage.length > 0) {
-           
+
             const showMoreButton = document.getElementsByTagName('button');
             Array.from(showMoreButton).map(() => {
                 showMoreButton[0].remove();
@@ -49,7 +49,7 @@ const favoritesPage = (actualPage) => {
                 let key = localStorage.key(index);
                 let item = localStorage.getItem(key);
                 item = JSON.parse(item);
-                favoritesResponse.push(item)
+                favoritesResponse.push(item);
             })
             buildCards(favoritesResponse.length - 1, favoritesResponse, actualPage, false);
             document.getElementById('number-page').textContent = "Favoritos";
@@ -68,7 +68,7 @@ const showMore = (response, actualPage) => {
     showMoreButton.addEventListener('click', () => {
         showMoreButton.remove();
         if (actualPage === 42) {
-            previousPageButtonClick(actualPage)
+            previousPageButtonClick(actualPage);
             buildCards(5, response, actualPage);
         } else {
             if ((actualPage - 1) === 0) nextPageButtonClick(actualPage);
@@ -86,7 +86,7 @@ const previousPageButtonClick = (actualPage) => {
     const buttonContainer = document.getElementById('render-more');
     const previousPageButton = document.createElement('button');
     previousPageButton.innerHTML = 'ANTERIOR';
-    previousPageButton.style.marginRight = '5px'
+    previousPageButton.style.marginRight = '5px';
     previousPageButton.setAttribute('id', 'anterior');
     buttonContainer.appendChild(previousPageButton);
 
@@ -173,14 +173,16 @@ const buildCards = (newCards, response, actualPage, favoritesSave) => {
 
         const image = document.getElementsByClassName('item-0')[index].style.backgroundImage = `url(${response[index].image})`;
         const imageUrl = image.replace(/(url\(|\)|"|')/g, '');
+        
+        //Bug >> transición, sólo la aplica en el primer Item ¿¿??
         document.getElementsByClassName('item-0')[index].style.transition = '2s';
-
+        
         const gender = document.getElementsByClassName('item-1')[index].textContent = response[index].gender;
         const species = document.getElementsByClassName('item-2')[index].textContent = response[index].species;
         const name = document.getElementsByClassName('item-3')[index].textContent = response[index].name;
         const status = document.getElementsByClassName('item-4')[index].textContent = response[index].status;
 
-        //animacion(name, index);  //No funciona como debiera, lo genera todo en el primer item
+        //animacion(name, index);  //No funciona correctamente lo genera todo en el primer item
 
         /* Guardar en favoritos. Solo deja desde fuera de favoritos */
         if (favoritesSave) {
@@ -194,9 +196,7 @@ const buildCards = (newCards, response, actualPage, favoritesSave) => {
     modalWindow(response);
 }
 
-
-
-
+/* Animación >> NO Funciona correctamente */
 const animacion = (name, index) => {
 
     let cont = 0;
@@ -205,20 +205,21 @@ const animacion = (name, index) => {
     let itemName = name;
     let replaceWhiteSpaces = itemName.replace(/ /g, '.');
     let itemNameArray = replaceWhiteSpaces.toUpperCase().split("");
+
     let randomTextElement = document.getElementsByClassName("item-3")[index];
     randomTextElement.style.display = 'inline-flex';
     randomTextElement.innerHTML = '';
 
-    document.querySelector('.card-footer > div > h2').appendChild(document.createElement('p'));
+    randomTextElement.appendChild(document.createElement('p'));
 
-    const intervalId = setInterval(function () {
-        updateRandomText(itemNameArray, itemName, intervalId);
-    }, 25);
-
+    let newParagraf = document.createElement('p');
+    newParagraf.setAttribute('class', 'item-3');
+    console.log('Hola' + newParagraf.innerHTML);
 
     const updateRandomText = () => {
         let pPosition = document.querySelectorAll('p').length - 1
-        let newParagraf = document.getElementsByTagName('p')[pPosition];
+        let newParagraf = document.getElementsByTagName('p')[pPosition - 2];
+
         if (cont < 6) {
             newParagraf.textContent = generateRandomLetter();
             cont++;
@@ -249,6 +250,12 @@ const animacion = (name, index) => {
             }
         }
     }
+
+    const intervalId = setInterval(function () {
+        updateRandomText(itemNameArray, itemName, intervalId);
+    }, 25);
+
+
 
     /* Letras aleatorias */
     const generateRandomLetter = (() => {

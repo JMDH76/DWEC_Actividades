@@ -15,7 +15,7 @@
 
     <script>
 
-        let itemName = 'Rick Sanchez';
+        let itemName = '¿De que marca quieres el jamón? ;-\)';
         let replaceWhiteSpaces = itemName.replace(/ /g, '.');
         let itemNameArray = replaceWhiteSpaces.toUpperCase().split("");
         let randomTextElement = document.getElementsByClassName("item-3")[0];
@@ -34,7 +34,7 @@
 
 
         const updateRandomText = () => {
-            if (cont <= 6) {
+            if (cont < 6) {
                 randomTextElement.textContent = generateRandomLetter();
                 cont++;
 
@@ -48,7 +48,7 @@
                         clearInterval(intervalId);
 
                     } else {
-
+                        
                         let newParagraf = document.createElement('h2');
                         newParagraf.setAttribute('id', `item-3-${cont2 - 1}`);
                         container.appendChild(newParagraf);
@@ -71,7 +71,7 @@
 
         const intervalId = setInterval(function () {
             updateRandomText(randomTextElement, itemName, intervalId);
-        }, 25);
+        }, 15);
     </script>
 </body>
 
