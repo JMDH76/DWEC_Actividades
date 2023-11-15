@@ -27,13 +27,12 @@ const favoritesPage = (actualPage) => {
     const title = document.getElementsByTagName('h1');
 
     title[0].addEventListener('click', () => {
-        if (localStorage.length > 0) {
 
+        if (localStorage.length > 0) {
             const showMoreButton = document.getElementsByTagName('button');
             Array.from(showMoreButton).map(() => {
                 showMoreButton[0].remove();
             });
-
             const buttonContainer = document.getElementById('render-more');
             const favoritesBackButton = document.createElement('button');
             favoritesBackButton.innerHTML = "VOLVER";
@@ -43,7 +42,6 @@ const favoritesPage = (actualPage) => {
                 favoritesBackButton.remove();
                 getData(1, true)
             });
-
             /* Extraer datos de localStorage y crear array con los datos */
             Array.from(localStorage).map((element, index) => {
                 let key = localStorage.key(index);
@@ -69,7 +67,7 @@ const showMore = (response, actualPage) => {
         showMoreButton.remove();
         if (actualPage === 42) {
             previousPageButtonClick(actualPage);
-            buildCards(5, response, actualPage);
+            buildCards(5, response, actualPage, true);
         } else {
             if ((actualPage - 1) === 0) nextPageButtonClick(actualPage);
             else {
@@ -85,7 +83,7 @@ const showMore = (response, actualPage) => {
 const previousPageButtonClick = (actualPage) => {
     const buttonContainer = document.getElementById('render-more');
     const previousPageButton = document.createElement('button');
-    previousPageButton.innerHTML = 'ANTERIOR';
+    previousPageButton.innerHTML = 'ANTERIORES';
     previousPageButton.style.marginRight = '5px';
     previousPageButton.setAttribute('id', 'anterior');
     buttonContainer.appendChild(previousPageButton);
@@ -103,7 +101,7 @@ const previousPageButtonClick = (actualPage) => {
 const nextPageButtonClick = (actualPage) => {
     const buttonContainer = document.getElementById('render-more');
     const nextPageButton = document.createElement('button');
-    nextPageButton.innerHTML = 'SIGUIENTE';
+    nextPageButton.innerHTML = 'SIGUIENTES';
     nextPageButton.setAttribute('id', 'siguiente');
     buttonContainer.appendChild(nextPageButton);
 
@@ -163,20 +161,21 @@ const buildCards = (newCards, response, actualPage, favoritesSave) => {
     });
 
     /* Clona la primera y las añade */
-    for (let i = 0; i < newCards; i++) {
+    const arrayNewCards = Array.from({ length: newCards }, (element, index) => index + 1);
+    arrayNewCards.map(() => {
         let cardClone = cards[0].cloneNode(true);
         container.appendChild(cardClone);
-    }
+    })
 
     /* Da los valores correspondientes a cada Card */
     Array.from(cards).map((element, index) => {
 
         const image = document.getElementsByClassName('item-0')[index].style.backgroundImage = `url(${response[index].image})`;
         const imageUrl = image.replace(/(url\(|\)|"|')/g, '');
-        
+
         //Bug >> transición, sólo la aplica en el primer Item ¿¿??
         document.getElementsByClassName('item-0')[index].style.transition = '2s';
-        
+
         const gender = document.getElementsByClassName('item-1')[index].textContent = response[index].gender;
         const species = document.getElementsByClassName('item-2')[index].textContent = response[index].species;
         const name = document.getElementsByClassName('item-3')[index].textContent = response[index].name;
@@ -195,6 +194,8 @@ const buildCards = (newCards, response, actualPage, favoritesSave) => {
     });
     modalWindow(response);
 }
+window.onload = getData(1, false);
+
 
 /* Animación >> NO Funciona correctamente */
 const animacion = (name, index) => {
@@ -265,4 +266,3 @@ const animacion = (name, index) => {
     })
 }
 
-window.onload = getData(1, false);
