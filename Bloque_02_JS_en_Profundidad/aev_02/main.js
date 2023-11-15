@@ -28,6 +28,7 @@ const favoritesPage = (actualPage) => {
 
     title[0].addEventListener('click', () => {
         if (localStorage.length > 0) {
+           
             const showMoreButton = document.getElementsByTagName('button');
             Array.from(showMoreButton).map(() => {
                 showMoreButton[0].remove();
@@ -36,7 +37,7 @@ const favoritesPage = (actualPage) => {
             const buttonContainer = document.getElementById('render-more');
             const favoritesBackButton = document.createElement('button');
             favoritesBackButton.innerHTML = "VOLVER";
-            buttonContainer.appendChild(favoritesBackButton)
+            buttonContainer.appendChild(favoritesBackButton);
 
             favoritesBackButton.addEventListener('click', () => {
                 favoritesBackButton.remove();
@@ -151,7 +152,6 @@ const modalWindow = (response) => {
 /* Crea los Cards necesarios */
 const buildCards = (newCards, response, actualPage, favoritesSave) => {
     const container = document.getElementsByClassName('grid-container')[0];
-
     const cards = document.getElementsByClassName('card');
     document.getElementById('trigger').setAttribute('class', 'trigger');
 
@@ -178,7 +178,9 @@ const buildCards = (newCards, response, actualPage, favoritesSave) => {
         const gender = document.getElementsByClassName('item-1')[index].textContent = response[index].gender;
         const species = document.getElementsByClassName('item-2')[index].textContent = response[index].species;
         const name = document.getElementsByClassName('item-3')[index].textContent = response[index].name;
-        const status = document.getElementsByClassName('item-4')[index].textContent = response[index].status
+        const status = document.getElementsByClassName('item-4')[index].textContent = response[index].status;
+
+        //animacion(name, index);  //No funciona como debiera, lo genera todo en el primer item
 
         /* Guardar en favoritos. Solo deja desde fuera de favoritos */
         if (favoritesSave) {
@@ -191,4 +193,69 @@ const buildCards = (newCards, response, actualPage, favoritesSave) => {
     });
     modalWindow(response);
 }
+
+
+
+
+const animacion = (name, index) => {
+
+    let cont = 0;
+    let cont2 = 0;
+    let flag = false
+    let itemName = name;
+    let replaceWhiteSpaces = itemName.replace(/ /g, '.');
+    let itemNameArray = replaceWhiteSpaces.toUpperCase().split("");
+    let randomTextElement = document.getElementsByClassName("item-3")[index];
+    randomTextElement.style.display = 'inline-flex';
+    randomTextElement.innerHTML = '';
+
+    document.querySelector('.card-footer > div > h2').appendChild(document.createElement('p'));
+
+    const intervalId = setInterval(function () {
+        updateRandomText(itemNameArray, itemName, intervalId);
+    }, 25);
+
+
+    const updateRandomText = () => {
+        let pPosition = document.querySelectorAll('p').length - 1
+        let newParagraf = document.getElementsByTagName('p')[pPosition];
+        if (cont < 6) {
+            newParagraf.textContent = generateRandomLetter();
+            cont++;
+
+        } else {
+            if (itemNameArray.length > 1) {
+                newParagraf.textContent = itemNameArray[cont2];
+                cont2++;
+
+                if (cont2 === itemNameArray.length + 1) {
+                    flag = true;
+                    clearInterval(intervalId);
+
+                } else {
+                    let newParagraf2 = document.createElement('p');
+                    document.querySelector('.card-footer > div > h2').appendChild(newParagraf2);
+                    newParagraf2 = document.getElementsByTagName('p')[document.querySelectorAll('p').length - 1];
+                    newParagraf = newParagraf2;
+
+                    if (itemNameArray[cont2] === '.') {
+                        newParagraf.style.color = 'white';
+                    }
+                }
+                cont = 0;
+            }
+            if (flag === true) {
+                document.getElementsByClassName("item-3")[index].innerHTML = itemName.toUpperCase();
+            }
+        }
+    }
+
+    /* Letras aleatorias */
+    const generateRandomLetter = (() => {
+        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const randomIndex = Math.floor(Math.random() * letters.length);
+        return letters[randomIndex];
+    })
+}
+
 window.onload = getData(1, false);

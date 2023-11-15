@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animación AEV_02</title>
+</head>
+
+<body>
+
+    <div id='wordContainer' style="display: inline-flex; font-size: 16px;margin-left: 250px;">
+        <h2 class="item-3"> </h2>
+    </div>
+
+    <script>
+
+        let itemName = 'Rick Sanchez';
+        let replaceWhiteSpaces = itemName.replace(/ /g, '.');
+        let itemNameArray = replaceWhiteSpaces.toUpperCase().split("");
+        let randomTextElement = document.getElementsByClassName("item-3")[0];
+        let container = document.getElementById('wordContainer');
+
+        let cont2 = 0;
+        let cont = 0;
+        let flag = false
+
+        // Función para generar letras aleatorias
+        const generateRandomLetter = (() => {
+            const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const randomIndex = Math.floor(Math.random() * letters.length);
+            return letters[randomIndex];
+        })
+
+
+        const updateRandomText = () => {
+            if (cont <= 6) {
+                randomTextElement.textContent = generateRandomLetter();
+                cont++;
+
+            } else {
+                if (itemNameArray.length > 1) {
+                    randomTextElement.textContent = itemNameArray[cont2 - 1];
+                    cont2++;
+
+                    if (cont2 === itemNameArray.length + 1) {
+                        flag = true;
+                        clearInterval(intervalId);
+
+                    } else {
+
+                        let newParagraf = document.createElement('h2');
+                        newParagraf.setAttribute('id', `item-3-${cont2 - 1}`);
+                        container.appendChild(newParagraf);
+                        randomTextElement = newParagraf;
+
+                        if (itemNameArray[cont2 - 1] === '.') {
+                            newParagraf.style.color = 'white'
+                        }
+                    }
+                    cont = 0;
+                }
+                if (flag === true) {
+                    itemNameArray.map((element, index) => {
+                        document.getElementById(`item-3-${index}`).remove();
+                    })
+                    document.getElementsByClassName("item-3")[0].innerHTML = itemName.toUpperCase();
+                }
+            }
+        }
+
+        const intervalId = setInterval(function () {
+            updateRandomText(randomTextElement, itemName, intervalId);
+        }, 25);
+    </script>
+</body>
+
+</html>
