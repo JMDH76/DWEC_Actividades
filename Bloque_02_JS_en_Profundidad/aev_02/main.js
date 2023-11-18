@@ -114,7 +114,7 @@ const nextPageButtonClick = (actualPage) => {
     });
 }
 
-/* Botón Mostrsr más */
+/* Botón Mostrar más */
 const showMoreButton = (actualPage, flag) => {
     const buttonContainer = document.getElementById('render-more');
     const showMoreButton = document.createElement('button');
