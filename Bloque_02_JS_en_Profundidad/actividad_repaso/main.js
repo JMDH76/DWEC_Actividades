@@ -1,6 +1,6 @@
 const words = [];
 const wordsDefinitions = [];
-let counter = 3;
+let counter = 0;
 let flag = true;
 let gameWords = words.length;
 let rigthWords = 0;
@@ -53,7 +53,21 @@ const obtenerDatos = () => {
     //console.log(words[counter]);
     const long = wordsDefinitions[counter].length;
     console.log(long)
+    const table = document.getElementsByTagName('table')[1];
+    const paragraphs = document.getElementsByTagName('p');
+    if (paragraphs !== null) {
+        Array.from(paragraphs).map((element, index) => {
+            element.remove();
+        })
+    }
+
     for (let i = 0; i < long; i++) {
+        let p = document.createElement('p');
+        p.style.backgroundColor = 'orange'
+        p.style.padding = '5px';
+        p.style.margin = '1px 0px';
+        table.appendChild(p);  
+        p.innerHTML=wordsDefinitions[counter][i]
         console.log(wordsDefinitions[counter][i])
     }
 }
@@ -103,7 +117,6 @@ const getApiData = async (word, index) => {
             element.innerHTML = w[randomIndex];
             w.splice(randomIndex, 1);
 
-
             element.addEventListener('click', () => {
                 if (celdaAnterior !== undefined) {
                     let temp = element.innerHTML;
@@ -127,7 +140,6 @@ const getApiData = async (word, index) => {
                     rigthWords++;
                     counter++
                 } else flag = false;
-
             })
         })
 
