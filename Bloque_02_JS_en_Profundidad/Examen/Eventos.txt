@@ -1,0 +1,85 @@
+Eventos de Mouse:
+ - click: Ocurre cuando se hace clic en un elemento.
+ - dblclick: Se dispara al hacer doble clic en un elemento.
+ - mouseover: Se activa cuando el cursor se mueve sobre un elemento.
+ - mouseout: Ocurre cuando el cursor sale de un elemento.
+ - mousedown: Se dispara al presionar un botón del mouse en un elemento.
+ - mouseup: Ocurre cuando se suelta un botón del mouse sobre un elemento.
+
+Eventos de Teclado:
+ - keydown: Se dispara cuando se presiona una tecla.
+ - keyup: Ocurre cuando se suelta una tecla.
+ - keypress: Se activa cuando se presiona una tecla que genera un carácter.
+
+Eventos de Formulario:
+ - submit: Ocurre cuando se envía un formulario.
+ - change: Se dispara cuando el valor de un campo de formulario cambia y se sale del campo.
+ - input: Ocurre cuando el valor de un campo de entrada cambia (se activa a medida que se escribe).
+
+Eventos de Ventana:
+ - load: Se dispara cuando la página y todos sus recursos (imágenes, etc.) han terminado de cargarse.
+ - resize: Ocurre cuando cambia el tamaño de la ventana del navegador.
+ - scroll: Se activa cuando se desplaza la página.
+
+Otros Eventos:
+ - focus: Ocurre cuando un elemento obtiene el foco.
+ - blur: Se dispara cuando un elemento pierde el foco.
+ - DOMContentLoaded: Se dispara cuando el HTML inicial ha sido completamente cargado y analizado, sin esperar a que se carguen las hojas de estilo y las imágenes.
+
+
+
+// Obtener un botón por su ID
+let boton = document.getElementById('miBoton');
+
+
+// Agregar un evento 'click'
+boton.addEventListener('click', function() {
+  alert('¡Haz hecho clic en el botón!');
+});
+
+
+// Obtener un input por su ID
+let input = document.getElementById('miInput');
+
+
+// Agregar un evento 'input'
+input.addEventListener('input', function() {
+  console.log('El valor del input ha cambiado:', input.value);
+});
+
+
+// Obtener el formulario por su ID
+let formulario = document.getElementById('miFormulario');
+
+
+// Agregar un evento 'submit'
+formulario.addEventListener('submit', function(event) {
+  event.preventDefault(); // Evita que el formulario se envíe
+
+
+// Acciones con los datos del formulario
+  console.log('Formulario enviado');
+});
+
+
+// Obtener un elemento por su ID
+let elemento = document.getElementById('miElemento');
+
+
+// Agregar un evento 'mouseover'
+elemento.addEventListener('mouseover', function() {
+  elemento.style.backgroundColor = 'red';
+});
+
+
+// Agregar un evento 'mouseout'
+elemento.addEventListener('mouseout', function() {
+  elemento.style.backgroundColor = 'transparent';
+});
+
+
+window.addEventListener('load', function() {
+  alert('¡La página ha terminado de cargar!');
+  // Acciones adicionales después de que la página se ha cargado completamente
+});
+

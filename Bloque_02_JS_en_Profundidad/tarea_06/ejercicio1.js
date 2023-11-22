@@ -44,6 +44,36 @@ getButton.addEventListener('click', (event) => {
 })
 
 
+//////////////////////////////////////////
+//LocalStorage
+// Guardar un dato con una clave específica
+localStorage.setItem('nombre', 'Ejemplo');
+
+// Guardar un objeto serializado en JSON
+let usuario = {
+  nombre: 'Juan',
+  edad: 30,
+  email: 'juan@example.com'
+};
+localStorage.setItem('usuario', JSON.stringify(usuario));
+
+// Obtener un dato por su clave
+let nombre = localStorage.getItem('nombre');
+console.log('Nombre:', nombre);
+
+// Obtener un objeto y convertirlo de nuevo a su forma original
+let usuarioGuardado = localStorage.getItem('usuario');
+let usuarioParseado = JSON.parse(usuarioGuardado);
+console.log('Usuario:', usuarioParseado);
+
+// Eliminar un dato por su clave
+localStorage.removeItem('nombre');
+
+// Borrar todos los datos de localStorage
+localStorage.clear();
+
+
+
 /* Borrar item */
 deleteItemButton.addEventListener('click', (event) => {
     event.preventDefault();

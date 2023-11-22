@@ -1,0 +1,180 @@
+Para navegar directamente a algunas partes del DOM:
+• document.documentElement
+• document.body
+• document.head
+• document.title
+
+Para navegar desde cualquier nodo del DOM:
+• parentNode		>	el padre del nodo.
+• previousSibling 	>	hermano del nodo, por la izquierda.
+• nextSibling 		>	Hermano del nodo, por la derecha.
+• firstChild 		>	Primer hijo.
+• lastChild 		>	Último hijo.
+• childNodes 		>	Todos los hijos de un nodo. No es un array
+
+    Ej.:
+    const nodoPadre = elementoPorId.parentNode;
+    const primerHijo = nodoPadre.firstChild; // Ten en cuenta que puede incluir nodos de texto o comentarios
+    const ultimoHijo = nodoPadre.lastChild; // También puede incluir nodos de texto o comentarios
+    const siguienteHermano = elementoPorId.nextSibling;
+    const hermanoAnterior = elementoPorId.previousSibling;
+
+    const primerElementoHijo = nodoPadre.firstElementChild;
+    const ultimoElementoHijo = nodoPadre.lastElementChil
+
+
+Para navegar directamente a nodos DOM:
+• document.getElementById
+• document.getElementsByName
+• document.getElementsByTagName
+• document.getElementsByClassName
+
+-------------------------------------------------------------
+Existen 12 tipos de nodos:
+• Document: 	nodo raíz del que derivan todos los demás.
+• Element: 	cada una de las etiquetas HTML. Único nodo que puede contener atributos. Único del que pueden derivar otros nodos.
+• Attr: 	se define para representar cada uno de los atributos de las etiquetas HTML.
+• Text: 	contiene el texto encerrado por una etiqueta HTML.
+• Comment: 	representa los comentarios incluidos en la página HTML.
+• Resto: 	DocumentType, CDataSection, DocumentFragment, Entity, EntityReference, ProcessingInstruction y Notation
+
+---------------------
+Atributos de Element:
+---------------------
+• className, clientHeight, clientWidth, id, innerHTML, tagName, textContent.
+• Atributo children: Todos los elementos hijos de un nodo.
+• firstElementChild, lastElementChild.
+• nextElementSibling, previousElementSibling.
+• parentElement.
+• innerHTML: seleccionar y reemplazar -ambas- el contenido HTML de un nodo.
+
+Algunos elements especiales.
+Tablas:
+	• tableElement.rows 		-> Contiene los elements <tr>
+	• tableElement.caption 		-> El caption de la tabla
+	• tableElement.tBodies 		-> Colección de elements <tbody>
+	• tableRow.cells 		-> La colección de <td> y <th>
+	• tableRow.sectionRowIndex 	-> Posición de la fila dentro de la sección (body, head, etc.)
+	• cell.cellIndex 		-> La posición de la celda en la fila.
+
+
+--------------
+Selectores CSS
+--------------
+Con JavaScript también podemos utilizar la sintaxis propia de CSS para seleccionar elementos del árbol DOM, utilizando querySelector y querySelectorAll:
+• .class 		Elementos de una clase llamada .class
+• #id 			Elemento con el id llamado id
+• tag 			Elementos con un determinado tag
+• elem1, elem2 		Elementos que cumplen con elem1 o elem2
+• elem1 elem2 		Elementos de tipo elem2 dentro de elem1
+• elem1 > elem2 	Elementos de tipo elem2 que tienen un padre de tipo elem1
+• Elem1+elem2 		Todos los elementos de tipo elem2 inmediatamente después de un elem1
+• Elem1~elem2 		Elementos de tipo elem2 precedidos de elementos de tipo elem1
+• [attribute=value] 	Todos los elementos con un atributo igual a un determinado valor
+• Elem1[attribute=value] Todos los elementos de tipo Elem1 con un atributo igual a un determinado valor
+• Elem1:focus 		El elemento de tipo elem1 que tiene el foco
+• Elem1:hover		El elemento de tipo elem1 sobre el que está el ratón
+
+
+-----------------
+Eventos del Ratón
+-----------------
+click: 			al hacer click sobre un elemento.
+dblclick: 		después de hacer dos clicks seguidos sobre el mismo elemento.
+mousedown/mouseup: 	cuando se mantiene/suelta el botón izquierdo del ratón sobre un elemento.
+mouseover/mouseout: 	el cursor del ratón se mueve sobre/deja de estar sobre un elemento.
+Mousemove: 		todo movimiento del cursor sobre un elemento activa el evento.
+Contextmenu: 		al pulsar el botón derecho del ratón. No es un evento exclusivo del mouse, puede activarse desde el teclado.
+
+
+--------------
+Crear elemento
+--------------
+Crear elementos de forma dinámica en JavaScript
+• document.createElement(“etiqueta”)
+• document.createTextNode(“texto para el nodo”)
+
+
+-----------------------------------------
+Añadir los elementos creados al árbol DOM
+-----------------------------------------
+• elemento.appendChild(nuevoNodo)			-> Añade el nuevo nodo como último hijo.
+• elementoPadre.insertBefore(nuevoNodo, hijo) 		-> Añade el nuevo nodo antes del hijo especificado.
+• elementoPadre.replaceChild(nuevoNodo, viejoNodoHijo) 	-> Sustituye al hijo especificado
+• elemento.insertAdjacentElement(donde, elementoNuevo)donde:
+	-beforebegin -> Antes de elemento.
+	-afterbegin -> Dentro de elemento, al principio.
+	-beforeend -> Dentro de elemento, al final.
+	-afterend -> Después de elemento.
+
+• elementoPadre.removeChild(node) 			-> Elimina nodo hijo de elemento padre.
+• nodo.remove() -> Elimina todo el nodo.
+
+
+------------
+LocalStorage
+------------
+
+window.localStorage.setItem('Customer', 'John Doe');
+
+let data = window.localStorage.getItem('Customer');
+let data = {
+name: 'John',
+surname: 'Doe'
+}
+// Convierte Objeto a JSON
+window.localStorage.setItem('Customer', JSON.stringify(data))
+
+let data = window.localStorage.getItem('Customer');
+//Convierte JSON a objeto
+console.log(JSON.parse(data));
+
+---------------------------------
+
+GUARDAR
+-------
+localStorage.setItem('nombre', 'Ejemplo');
+
+let usuario = {
+  nombre: 'Juan',
+  edad: 30,
+  email: 'juan@example.com'
+};
+localStorage.setItem('usuario', JSON.stringify(usuario));
+
+
+RECUPERAR
+---------
+Obtener un dato por su clave
+let nombre = localStorage.getItem('nombre');
+console.log('Nombre:', nombre);
+
+// Obtener un objeto y convertirlo de nuevo a su forma original
+let usuarioGuardado = localStorage.getItem('usuario');
+let usuarioParseado = JSON.parse(usuarioGuardado);
+console.log('Usuario:', usuarioParseado);
+
+
+ELIMINAR
+--------
+// Eliminar un dato por su clave
+localStorage.removeItem('nombre');
+
+// Borrar todos los datos de localStorage
+localStorage.clear();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

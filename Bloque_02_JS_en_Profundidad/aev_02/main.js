@@ -4,6 +4,9 @@ const getData = async (page, allItems) => {
         document.getElementById('number-page').textContent = page;
         response = response.data.results;
 
+        /* let gridContainer = document.getElementsByClassName('grid-container')[0];
+        gridContainer.style.transition='2s' */
+        
         const actualPage = parseInt(document.getElementById('number-page').textContent);
 
         if (allItems === true) {
@@ -42,6 +45,7 @@ const favoritesPage = (actualPage) => {
                 favoritesBackButton.remove();
                 getData(1, true)
             });
+            
             /* Extraer datos de localStorage y crear array con los datos */
             Array.from(localStorage).map((element, index) => {
                 let key = localStorage.key(index);
@@ -159,7 +163,6 @@ const buildCards = (newCards, response, actualPage, favoritesSave) => {
             element.remove();
         }
     });
-
     /* Clona la primera y las añade */
     const arrayNewCards = Array.from({ length: newCards }, (element, index) => index + 1);
     arrayNewCards.map(() => {
