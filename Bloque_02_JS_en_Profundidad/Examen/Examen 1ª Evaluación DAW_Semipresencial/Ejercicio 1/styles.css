@@ -1,0 +1,142 @@
+
+body {
+  background-color: #efefef;
+  color: #3a3a3a;
+  background-color: white;
+  line-height: 1.5;
+  font-family: "Open Sans", sans-serif;
+}
+
+#page {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1200px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+button {
+  font-family: "Open Sans", sans-serif;
+}
+
+#render {
+  text-align: center;
+}
+
+#render button {
+  background-color: white;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.9px;
+  color: #C4001A;
+  border: solid 1px #C4001A;
+  margin-bottom: 30px;
+  margin-top: 20px;
+
+}
+
+#render button:hover {
+  background-color: rgba(196, 0, 26, 0.05);
+}
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem 1.5rem;
+  height: 420px;
+  width: 300px;
+  border-radius: 0.5rem;
+  overflow-x: scroll;
+}
+
+.close-button {
+  float: right;
+  width: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  background-color: lightgray;
+}
+
+.close-button:hover {
+  background-color: darkgray;
+}
+
+.show-modal {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1.0);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+
+
+.container {
+  display: inline-block;
+  width: 940px;
+  margin: auto;
+}
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 300px;
+}
+.card-header img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 20px;
+  min-height: 125px;
+}
+.tag {
+  background-color: #ccc;
+  color: #fff;
+  border-radius: 50px;
+  font-size: 12px;
+  margin: 0;
+  padding: 2px 10px;
+  text-transform: uppercase;
+}
+
+.card-body h4 {
+  margin: 10px 0;
+}
+.card-body p {
+  font-size: 14px;
+  margin: 0 0 40px 0;
+  font-weight: 500;
+  color: rgb(70, 68, 68);
+}
+
+@media (max-width: 940px) {
+  .container {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+}

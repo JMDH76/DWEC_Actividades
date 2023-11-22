@@ -1,0 +1,50 @@
+.photo {
+  border: 1px solid #5495ff;
+  width: 50%;
+  padding: 1.11rem;
+  border-radius: 5px;
+  margin: 0 auto 4.44rem auto;
+  background-color: white;
+}
+
+.photo .image-container {
+  margin-bottom: 1.11rem;
+}
+
+.photo .image-container img {
+  width: 100%;
+  height: 250px;
+}
+
+.photo .caption {
+  font-style: italic;
+  font-family: "Merriweather", serif;
+}
+
+body {
+  background-color: #ffffff;
+  margin: 0px;
+  padding: 0px;
+}
+
+a.logo {
+  color: #2176FF;
+  font-family: 'Amatic SC', sans-serif;
+  font-size: 34px;
+  padding: 0px 60px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+p {
+  color: #000000;
+  font-family: 'Raleway', sans-serif;
+  font-size: 18px;
+  line-height: 42px;
+  text-align: left;
+}
+
+.description {
+  display: inline-block;
+  width: 70%;
+}

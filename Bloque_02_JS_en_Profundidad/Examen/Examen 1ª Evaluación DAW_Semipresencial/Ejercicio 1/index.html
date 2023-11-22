@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="page">
+    <section style="text-align: center;">
+        <h1>Rick & Morty</h1>
+        <div class="content">
+            <form>
+                <input type="text" name="name" placeholder="Nombre" required autofocus><br>
+                <div id='render'>
+                    <button type="submit">BUSCAR</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+
+<div class="modal">
+    <div class="modal-content">
+        <span class="close-button">×</span>
+        <div class="container">
+          <div class="card">
+            <div class="card-header">
+              <img src="https://hips.hearstapps.com/es.h-cdn.co/fotoes/images/series-television/11-cosas-que-no-sabias-de-rick-y-morty/137666502-1-esl-ES/11-cosas-que-no-sabias-de-Rick-y-Morty.jpg?crop=1xw:0.75xh;center,top&resize=1200:*" alt="" />
+            </div>
+            <div class="card-body">
+              <span class="tag">Episodio</span>
+              <h4>Personajes</h4>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+<script src="ejercicio1.js"></script>
+</body>
+</html>
